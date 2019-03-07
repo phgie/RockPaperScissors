@@ -1,7 +1,7 @@
-public class Spieler {
+public class Spieler implements SteinScherePapierSpieler {
 
-    public String gibSymbol() {
+    public Symbol gibSymbol() {
 
-        return "Stein";
+        return Symbol.STEIN;
     }
 }
