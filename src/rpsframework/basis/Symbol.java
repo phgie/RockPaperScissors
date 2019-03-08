@@ -1,3 +1,5 @@
+package rpsframework.basis;
+
 /**
  * Die Basissymbole, mit denen wir spielen
  */

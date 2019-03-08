@@ -1,3 +1,7 @@
+package rpsframework.basis;
+
+import impl.Spieler;
+
 public class Duell {
 
     private Spieler spieler1;
@@ -40,11 +44,11 @@ public class Duell {
                             unentschieden++;
                             break;
                         case PAPIER:
-                            //Spieler 1 gewinnt
+                            //impl.Spieler 1 gewinnt
                             spieler1siege++;
                             break;
                         case SCHERE:
-                            //Spieler 2 gewinnt
+                            //impl.Spieler 2 gewinnt
                             spieler2siege++;
                             break;
                     }
@@ -54,7 +58,7 @@ public class Duell {
                     switch (spieler2symbol) {
 
                         case STEIN:
-                            //Spieler 1 gewinnt
+                            //impl.Spieler 1 gewinnt
                             spieler1siege++;
                             break;
                         case PAPIER:
@@ -62,7 +66,7 @@ public class Duell {
                             unentschieden++;
                             break;
                         case SCHERE:
-                            //Spieler 2 gewinnt
+                            //impl.Spieler 2 gewinnt
                             spieler2siege++;
                             break;
                     }
@@ -72,11 +76,11 @@ public class Duell {
                     switch (spieler2symbol) {
 
                         case STEIN:
-                            //Spieler 2 gewinnt
+                            //impl.Spieler 2 gewinnt
                             spieler2siege++;
                             break;
                         case PAPIER:
-                            //Spieler 1 gewinnt
+                            //impl.Spieler 1 gewinnt
                             spieler1siege++;
                             break;
                         case SCHERE:
