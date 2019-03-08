@@ -4,5 +4,5 @@ public interface SteinScherePapierSpieler {
 
     Symbol gibSymbol();
 
-    void starteNeuesDuell();
+    void starteNeuesSpiel();
 }

@@ -15,7 +15,7 @@ public class SpielerStein implements SteinScherePapierSpieler {
     }
 
     @Override
-    public void starteNeuesDuell() {
+    public void starteNeuesSpiel() {
 
     }
 }

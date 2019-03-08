@@ -23,6 +23,8 @@ public class Turnier {
 
     public void starteTurnier() {
 
+        // Ueber alle Spieler iterieren und jeden gegen jeden spielen lassen
 
+        // Fuer jede Begegnung ein neues Spiel erstellen und die Spieler initialisieren
     }
 }

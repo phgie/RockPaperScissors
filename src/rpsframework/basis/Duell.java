@@ -1,113 +1,78 @@
 package rpsframework.basis;
 
-import impl.Spieler;
-
 public class Duell {
 
-    private Spieler spieler1;
-    private Spieler spieler2;
+    private Symbol spieler1Symbol;
+    private Symbol spieler2Symbol;
 
-    private int runden;
+    public Duell(Symbol spieler1Symbol, Symbol spieler2Symbol) {
 
-    private int spieler1siege;
-    private int spieler2siege;
-    private int unentschieden;
-
-
-    public Duell(Spieler spieler1, Spieler spieler2, int runden) {
-
-        this.spieler1 = spieler1;
-        this.spieler2 = spieler2;
-
-        this.runden = runden;
+        this.spieler1Symbol = spieler1Symbol;
+        this.spieler2Symbol = spieler2Symbol;
     }
 
-    public void starteDuell() {
+    public String gibErgebnis() {
 
-        Symbol spieler1symbol;
-        Symbol spieler2symbol;
+        String ergebnis = "";
 
-        for (int i = 0; i < runden; i++) {
+        //TODO schoener machen
+        switch(spieler1Symbol) {
 
-            spieler1symbol = spieler1.gibSymbol();
-            spieler2symbol = spieler2.gibSymbol();
+            case STEIN:
 
-            //TODO schoener machen und ggf. auslagern
-            switch(spieler1symbol) {
+                switch (spieler2Symbol) {
 
-                case STEIN:
+                    case STEIN:
+                        //unentschieden
+                        ergebnis = "Unentschieden";
+                        break;
+                    case PAPIER:
+                        //Spieler 1 gewinnt
+                        ergebnis = "Spieler 1 gewinnt";
+                        break;
+                    case SCHERE:
+                        //Spieler 2 gewinnt
+                        ergebnis = "Spieler 2 gewinnt";
+                        break;
+                }
+                break;
+            case PAPIER:
 
-                    switch (spieler2symbol) {
+                switch (spieler2Symbol) {
 
-                        case STEIN:
-                            //unentschieden
-                            unentschieden++;
-                            break;
-                        case PAPIER:
-                            //impl.Spieler 1 gewinnt
-                            spieler1siege++;
-                            break;
-                        case SCHERE:
-                            //impl.Spieler 2 gewinnt
-                            spieler2siege++;
-                            break;
-                    }
-                    break;
-                case PAPIER:
+                    case STEIN:
+                        //Spieler 1 gewinnt
+                        ergebnis = "Spieler 1 gewinnt";
+                        break;
+                    case PAPIER:
+                        //unentschieden
+                        ergebnis = "Unentschieden";
+                        break;
+                    case SCHERE:
+                        //Spieler 2 gewinnt
+                        ergebnis = "Spieler 2 gewinnt";
+                        break;
+                }
+                break;
+            case SCHERE:
 
-                    switch (spieler2symbol) {
+                switch (spieler2Symbol) {
 
-                        case STEIN:
-                            //impl.Spieler 1 gewinnt
-                            spieler1siege++;
-                            break;
-                        case PAPIER:
-                            //unentschieden
-                            unentschieden++;
-                            break;
-                        case SCHERE:
-                            //impl.Spieler 2 gewinnt
-                            spieler2siege++;
-                            break;
-                    }
-                    break;
-                case SCHERE:
-
-                    switch (spieler2symbol) {
-
-                        case STEIN:
-                            //impl.Spieler 2 gewinnt
-                            spieler2siege++;
-                            break;
-                        case PAPIER:
-                            //impl.Spieler 1 gewinnt
-                            spieler1siege++;
-                            break;
-                        case SCHERE:
-                            //unentschieden
-                            unentschieden++;
-                            break;
-                    }
-            }
+                    case STEIN:
+                        //Spieler 2 gewinnt
+                        ergebnis = "Spieler 2 gewinnt";
+                        break;
+                    case PAPIER:
+                        //Spieler 1 gewinnt
+                        ergebnis = "Spieler 1 gewinnt";
+                        break;
+                    case SCHERE:
+                        //unentschieden
+                        ergebnis = "Unentschieden";
+                        break;
+                }
         }
-    }
 
-    //TODO unschoen ;-)
-    public int gibErgebnis(Spieler spieler) {
-
-        if (spieler == null) {
-
-            return unentschieden;
-        } else if (spieler.equals(spieler1)) {
-
-            return spieler1siege;
-        } else if (spieler.equals(spieler2)) {
-
-            return spieler2siege;
-        } else {
-
-            //doof
-            return -1;
-        }
+        return ergebnis;
     }
 }
