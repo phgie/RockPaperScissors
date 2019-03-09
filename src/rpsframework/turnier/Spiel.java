@@ -1,6 +1,8 @@
-package rpsframework.basis;
+package rpsframework.turnier;
 
 import impl.Spieler;
+import rpsframework.basis.Duell;
+import rpsframework.basis.Symbol;
 
 public class Spiel {
 
