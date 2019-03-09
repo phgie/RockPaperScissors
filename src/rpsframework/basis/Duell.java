@@ -1,5 +1,9 @@
 package rpsframework.basis;
 
+/**
+ * Ein Duell ist ein einzelnes Aufeinandertreffen zweier Spielersymbole. In einem Duell wird ein Gewinner (falls es einen gibt) ermittelt.
+ *
+ */
 public class Duell {
 
     private Symbol spieler1Symbol;

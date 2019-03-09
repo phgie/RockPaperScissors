@@ -22,7 +22,7 @@ public class Spiel {
         this.runden = runden;
     }
 
-    public void starteDuell() {
+    public void starteSpiel() {
 
         Symbol spieler1symbol;
         Symbol spieler2symbol;
