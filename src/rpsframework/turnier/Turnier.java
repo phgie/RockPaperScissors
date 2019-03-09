@@ -1,7 +1,5 @@
 package rpsframework.turnier;
 
-import impl.Spieler;
-import rpsframework.basis.Spiel;
 import rpsframework.basis.SteinScherePapierSpieler;
 
 import java.util.ArrayList;
@@ -45,16 +43,22 @@ public class Turnier {
 
         for (int i = 0; i < spiele.length; ++i) {
             for (int j = i + 1; j < spiele.length; ++j) {
-                int indexDesGewinners;
-                if (spiele[i][j].getGewinner() == teilnehmer.get(i))
+                Integer indexDesGewinners;
+                SteinScherePapierSpieler gewinner = spiele[i][j].gibGewinner();
+                if (gewinner == teilnehmer.get(i))
                     indexDesGewinners = i;
-                else
+                else if (gewinner == teilnehmer.get(j))
                     indexDesGewinners = j;
-                punkte[indexDesGewinners] += 1;
+                else
+                    indexDesGewinners = null;
 
-                if (maximalePunktzahl < punkte[indexDesGewinners]) {
-                    maximalePunktzahl = punkte[indexDesGewinners];
-                    aktuellerGewinner = teilnehmer.get(indexDesGewinners);
+                if (indexDesGewinners != null) {
+                    punkte[indexDesGewinners] += 1;
+
+                    if (maximalePunktzahl < punkte[indexDesGewinners]) {
+                        maximalePunktzahl = punkte[indexDesGewinners];
+                        aktuellerGewinner = teilnehmer.get(indexDesGewinners);
+                    }
                 }
             }
         }
