@@ -11,24 +11,33 @@ class TurnierTest extends Turnier {
     @Test
     void steinGegenSchereGegenPapier() {
 
-        Turnier turnier = new Turnier(
-                new SteinScherePapierSpieler() {
+        Turnier turnier = new Turnier();
+        turnier.fuegeTeilnehmerHinzu(new TestSpieler(Symbol.STEIN), new TestSpieler(Symbol.PAPIER));
+        turnier.starteTurnier();
 
-                    @Override
-                    public String getName() {
-                        return null;
-                    }
+        assertEquals("PAPIER Spieler", turnier.ermittleGesamtGewinner().getName());
+    }
 
-                    @Override
-                    public Symbol gibSymbol() {
-                        return null;
-                    }
+    class TestSpieler implements SteinScherePapierSpieler {
+        Symbol symbol;
 
-                    @Override
-                    public void vorbereitenAufNeuesSpiel() {
+        TestSpieler(Symbol symbol) {
+            this.symbol = symbol;
+        }
 
-                    }
-                },
-        )
+        @Override
+        public String getName() {
+            return symbol.toString() + " Spisler";
+        }
+
+        @Override
+        public Symbol gibSymbol() {
+            return null;
+        }
+
+        @Override
+        public void vorbereitenAufNeuesSpiel() {
+
+        }
     }
 }
