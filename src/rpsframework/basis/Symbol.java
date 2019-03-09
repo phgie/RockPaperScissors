@@ -4,6 +4,5 @@ package rpsframework.basis;
  * Die Basissymbole, mit denen wir spielen
  */
 public enum Symbol {
-
-    STEIN, PAPIER, SCHERE
+    STEIN, PAPIER, SCHERE;
 }

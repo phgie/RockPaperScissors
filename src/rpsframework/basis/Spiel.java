@@ -4,8 +4,8 @@ import impl.Spieler;
 
 public class Spiel {
 
-    private Spieler spieler1;
-    private Spieler spieler2;
+    private SteinScherePapierSpieler spieler1;
+    private SteinScherePapierSpieler spieler2;
 
     private int runden;
 
@@ -14,7 +14,7 @@ public class Spiel {
     private int unentschieden;
 
 
-    public Spiel(Spieler spieler1, Spieler spieler2, int runden) {
+    public Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
 
         this.spieler1 = spieler1;
         this.spieler2 = spieler2;
@@ -33,7 +33,10 @@ public class Spiel {
             spieler2symbol = spieler2.gibSymbol();
 
             Duell duell = new Duell(spieler1symbol, spieler2symbol);
-            String ergebnis = duell.gibErgebnis();
+            spieler1.siehtSymbolVonGegner(spieler2symbol);
+            spieler2.siehtSymbolVonGegner(spieler1symbol);
+
+            int ergebnis = duell.gibErgebnis();
         }
     }
 

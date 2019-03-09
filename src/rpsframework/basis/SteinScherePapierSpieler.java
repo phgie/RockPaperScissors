@@ -9,6 +9,8 @@ package rpsframework.basis;
  */
 public interface SteinScherePapierSpieler {
 
+    public String getName();
+
     /**
      * Fragt den Spieler nach dem naechsten Symbol, welches er spielen moechte.
      * @return Das naechste Symbol
@@ -19,5 +21,7 @@ public interface SteinScherePapierSpieler {
      * Teil dem Spieler mit, dass ein neues Spiel gegen einen neuen Gegner beginnt. Es ist ratsam, alle Informationen fuer
      * das vorherige Spiel zu verwerfen, da nicht garantiert wird, dass man direkt wieder gegen denselben Spieler spielt.
      */
-    void starteNeuesSpiel();
+    void vorbereitenAufNeuesSpiel();
+
+    default void siehtSymbolVonGegner(Symbol gegnerischesSymbol) {}
 }

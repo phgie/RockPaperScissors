@@ -15,7 +15,7 @@ public class SpielerStein implements SteinScherePapierSpieler {
     }
 
     @Override
-    public void starteNeuesSpiel() {
+    public void vorbereitenAufNeuesSpiel() {
 
     }
 }

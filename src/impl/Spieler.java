@@ -12,13 +12,17 @@ import rpsframework.basis.Symbol;
 public class Spieler implements SteinScherePapierSpieler {
 
     @Override
-    public Symbol gibSymbol() {
+    public String getName() {
+        return "Dummfred";
+    }
 
+    @Override
+    public Symbol gibSymbol() {
         return Symbol.STEIN;
     }
 
     @Override
-    public void starteNeuesSpiel() {
+    public void vorbereitenAufNeuesSpiel() {
 
     }
 }

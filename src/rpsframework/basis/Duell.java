@@ -1,8 +1,9 @@
 package rpsframework.basis;
 
+import static rpsframework.basis.Symbol.*;
+
 /**
  * Ein Duell ist ein einzelnes Aufeinandertreffen zweier Spielersymbole. In einem Duell wird ein Gewinner (falls es einen gibt) ermittelt.
- *
  */
 public class Duell {
 
@@ -10,73 +11,24 @@ public class Duell {
     private Symbol spieler2Symbol;
 
     public Duell(Symbol spieler1Symbol, Symbol spieler2Symbol) {
-
         this.spieler1Symbol = spieler1Symbol;
         this.spieler2Symbol = spieler2Symbol;
     }
 
-    public String gibErgebnis() {
+    public int gibErgebnis() {
+        if (spieler1Symbol.equals(STEIN) && spieler2Symbol.equals(PAPIER))
+            return 1;
+        if (spieler1Symbol.equals(STEIN) && spieler2Symbol.equals(SCHERE))
+            return -1;
+        if (spieler1Symbol.equals(PAPIER) && spieler2Symbol.equals(STEIN))
+            return 1;
+        if (spieler1Symbol.equals(PAPIER) && spieler2Symbol.equals(SCHERE))
+            return -1;
+        if (spieler1Symbol.equals(SCHERE) && spieler2Symbol.equals(STEIN))
+            return 1;
+        if (spieler1Symbol.equals(SCHERE) && spieler2Symbol.equals(PAPIER))
+            return -1;
 
-        String ergebnis = "";
-
-        //TODO schoener machen
-        switch(spieler1Symbol) {
-
-            case STEIN:
-
-                switch (spieler2Symbol) {
-
-                    case STEIN:
-                        //unentschieden
-                        ergebnis = "Unentschieden";
-                        break;
-                    case PAPIER:
-                        //Spieler 1 gewinnt
-                        ergebnis = "Spieler 1 gewinnt";
-                        break;
-                    case SCHERE:
-                        //Spieler 2 gewinnt
-                        ergebnis = "Spieler 2 gewinnt";
-                        break;
-                }
-                break;
-            case PAPIER:
-
-                switch (spieler2Symbol) {
-
-                    case STEIN:
-                        //Spieler 1 gewinnt
-                        ergebnis = "Spieler 1 gewinnt";
-                        break;
-                    case PAPIER:
-                        //unentschieden
-                        ergebnis = "Unentschieden";
-                        break;
-                    case SCHERE:
-                        //Spieler 2 gewinnt
-                        ergebnis = "Spieler 2 gewinnt";
-                        break;
-                }
-                break;
-            case SCHERE:
-
-                switch (spieler2Symbol) {
-
-                    case STEIN:
-                        //Spieler 2 gewinnt
-                        ergebnis = "Spieler 2 gewinnt";
-                        break;
-                    case PAPIER:
-                        //Spieler 1 gewinnt
-                        ergebnis = "Spieler 1 gewinnt";
-                        break;
-                    case SCHERE:
-                        //unentschieden
-                        ergebnis = "Unentschieden";
-                        break;
-                }
-        }
-
-        return ergebnis;
+        return 0;
     }
 }
