@@ -1,5 +1,7 @@
 package rpsframework.basis;
 
+import java.util.Collections;
+
 import static rpsframework.basis.Symbol.*;
 
 /**
@@ -16,17 +18,17 @@ public class Duell {
     }
 
     public int gibErgebnis() {
-        if (spieler1Symbol.equals(STEIN) && spieler2Symbol.equals(PAPIER))
-            return 1;
         if (spieler1Symbol.equals(STEIN) && spieler2Symbol.equals(SCHERE))
+            return 1;
+        if (spieler1Symbol.equals(STEIN) && spieler2Symbol.equals(PAPIER))
             return -1;
         if (spieler1Symbol.equals(PAPIER) && spieler2Symbol.equals(STEIN))
             return 1;
         if (spieler1Symbol.equals(PAPIER) && spieler2Symbol.equals(SCHERE))
             return -1;
-        if (spieler1Symbol.equals(SCHERE) && spieler2Symbol.equals(STEIN))
-            return 1;
         if (spieler1Symbol.equals(SCHERE) && spieler2Symbol.equals(PAPIER))
+            return 1;
+        if (spieler1Symbol.equals(SCHERE) && spieler2Symbol.equals(STEIN))
             return -1;
 
         return 0;
