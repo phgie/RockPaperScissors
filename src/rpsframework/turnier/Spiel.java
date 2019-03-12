@@ -1,6 +1,5 @@
 package rpsframework.turnier;
 
-import impl.Spieler;
 import rpsframework.basis.Duell;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
@@ -28,6 +27,9 @@ public class Spiel {
         this.spieler2 = spieler2;
 
         this.duelle = new Duell[runden];
+
+        spieler1.vorbereitenAufNeuesSpiel();
+        spieler2.vorbereitenAufNeuesSpiel();
     }
 
     /**
@@ -46,43 +48,28 @@ public class Spiel {
             duelle[i] = new Duell(spieler1symbol, spieler2symbol);
 
             switch (duelle[i].gibErgebnis()) {
-                case -1:
-                    //Spieler 2 gewinnt
+
+                case Duell.rueckgabewertSpielerEinsGewinnt:
+                    // Spieler 1 gewinnt
+                    spieler1siege++;
+                    break;
+                case Duell.rueckgabewertSpielerZweiGewinnt:
+                    // Spieler 2 gewinnt
                     spieler2siege++;
                     break;
-                case 0:
-                    //unentschieden
+                case Duell.rueckgabewertUnentschieden:
+                    // Unentschieden
                     unentschieden++;
-                    break;
-                case 1:
-                    //Spieler 1 gewinnt
-                    spieler1siege++;
             }
         }
     }
 
     public SteinScherePapierSpieler gibGewinner() {
-        if (spieler2siege > spieler1siege)
-            return spieler2;
-        if (spieler1siege > spieler2siege)
-            return spieler1;
-        return null;
-    }
 
-    /**
-     * Gibt das Ergebnis für einen Spieler zurück.
-     *
-     * @param spieler
-     * @return
-     */
-    public int gibErgebnis(Spieler spieler) {
-
-        if (spieler == null) {
-            return unentschieden;
-        } else if (spieler.equals(spieler2)) {
-            return spieler2siege;
-        } else {
-            return spieler1siege;
-        }
+        return spieler1siege > spieler2siege
+                ? spieler1
+                : spieler2siege > spieler1siege
+                ? spieler2
+                : null;
     }
 }
