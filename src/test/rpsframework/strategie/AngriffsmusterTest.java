@@ -1,8 +1,9 @@
-package rpsframework.basis;
+package rpsframework.strategie;
 
 import org.junit.jupiter.api.Test;
+import rpsframework.basis.Symbol;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AngriffsmusterTest {
 

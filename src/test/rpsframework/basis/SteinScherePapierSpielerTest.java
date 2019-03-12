@@ -1,6 +1,7 @@
 package rpsframework.basis;
 
 import org.junit.jupiter.api.Test;
+import rpsframework.strategie.Angriffsmuster;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,6 +1,5 @@
 package rpsframework.turnier;
 
-import rpsframework.basis.Duell;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
@@ -8,7 +7,7 @@ import rpsframework.basis.Symbol;
  * Ein Spiel ist eine Begegnung zwischen zwei Spielern und laeuft ueber eine vorgegebene Zahl von Runden. Jede Runde ist
  * ein Duell, dessen Ausgang abgefragt werden kann
  */
-public class Spiel {
+class Spiel {
 
     private SteinScherePapierSpieler spieler1;
     private SteinScherePapierSpieler spieler2;
@@ -21,7 +20,7 @@ public class Spiel {
     private int unentschieden;
 
 
-    public Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
+    Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
 
         this.spieler1 = spieler1;
         this.spieler2 = spieler2;
@@ -35,7 +34,7 @@ public class Spiel {
     /**
      * Startet das Spiel und loest die einzelnen Begegnungen aus
      */
-    public void starteSpiel() {
+    void starteSpiel() {
 
         Symbol spieler1symbol;
         Symbol spieler2symbol;
@@ -64,7 +63,7 @@ public class Spiel {
         }
     }
 
-    public SteinScherePapierSpieler gibGewinner() {
+    SteinScherePapierSpieler gibGewinner() {
 
         return spieler1siege > spieler2siege
                 ? spieler1

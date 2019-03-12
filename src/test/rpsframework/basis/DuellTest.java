@@ -2,7 +2,7 @@ package test.rpsframework.basis;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import rpsframework.basis.Duell;
+import rpsframework.turnier.Duell;
 import rpsframework.basis.Symbol;
 
 class DuellTest {

@@ -1,4 +1,6 @@
-package rpsframework.basis;
+package rpsframework.strategie;
+
+import rpsframework.basis.Symbol;
 
 import java.util.ArrayList;
 

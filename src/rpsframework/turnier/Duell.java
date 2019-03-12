@@ -1,4 +1,6 @@
-package rpsframework.basis;
+package rpsframework.turnier;
+
+import rpsframework.basis.Symbol;
 
 /**
  * Ein Duell ist ein einzelnes Aufeinandertreffen zweier Spielersymbole. In einem Duell wird ein Gewinner (falls es einen gibt) ermittelt.
