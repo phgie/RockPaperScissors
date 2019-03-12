@@ -69,7 +69,7 @@ public class Spiel {
         return spieler1siege > spieler2siege
                 ? spieler1
                 : spieler2siege > spieler1siege
-                ? spieler2
-                : null;
+                    ? spieler2
+                    : null;
     }
 }
