@@ -9,6 +9,11 @@ import rpsframework.basis.Symbol;
 public class SpielerStein implements SteinScherePapierSpieler {
 
     @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
     public Symbol gibSymbol() {
 
         return Symbol.STEIN;

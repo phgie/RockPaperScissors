@@ -58,7 +58,8 @@ public class Turnier {
                     if (maximalePunktzahl < punkte[indexDesGewinners]) {
                         maximalePunktzahl = punkte[indexDesGewinners];
                         aktuellerGewinner = teilnehmer.get(indexDesGewinners);
-                    }
+                    } else if (maximalePunktzahl == punkte[indexDesGewinners])
+                        aktuellerGewinner = null;
                 }
             }
         }
