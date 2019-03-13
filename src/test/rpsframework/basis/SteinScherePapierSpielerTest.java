@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 import rpsframework.strategie.Angriffsmuster;
+import rpsframework.turnier.Duell;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -72,7 +73,12 @@ class SteinScherePapierSpielerTest {
         }
 
         @Override
-        public void vorbereitenAufNeuesSpiel() {
+        public void starteNeuesSpiel(int runden) {
+
+        }
+
+        @Override
+        public void nimmDuell(Duell duell, int runde) {
 
         }
     }

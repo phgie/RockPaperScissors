@@ -2,68 +2,110 @@ package rpsframework.turnier;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 /**
- * TODO: Das eigentliche rpsframework.turnier.Turnier implementieren
+ * Ein Turnier, bestehend aus mehreren Spielen mit jeweils mehreren Duellen
  */
 public class Turnier {
 
+    /* Die Standard-Anzahl an Runden, falls kein eigener Wert gesetzt wurde. */
+    private static final int standardRundenZahl = 100;
+
+    /* Wir speichern hier die Teilnehmer des Turniers */
+//    private HashMap<String, SteinScherePapierSpieler> teilnehmer;
     private ArrayList<SteinScherePapierSpieler> teilnehmer;
-    private Spiel[][] spiele;
 
-    private static final int runden = 100;
+    /* Wir speichern die Spiele des Turniers in einem HashSet */
+    private HashSet<Spiel> spiele;
 
+    private int rundenProSpiel;
+
+    /**
+     * Erzeugt ein neues Turnier
+     */
     public Turnier() {
+
         this.teilnehmer = new ArrayList<>();
+        this.spiele = new HashSet<>();
+        this.rundenProSpiel = standardRundenZahl;
     }
 
-    public void fuegeTeilnehmerHinzu(SteinScherePapierSpieler ...turnierTeilnehmer) {
-        Collections.addAll(this.teilnehmer, turnierTeilnehmer);
-        spiele = new Spiel[this.teilnehmer.size()][this.teilnehmer.size()];
+
+    /**
+     * Fügt einen einzelnen Teilnehmer dem Turnier hinzu, falls dieser noch nicht Teilnehmer des Turniers ist.
+     * @param turnierTeilnehmer Der Turnierteilnehmer, ein SteinScherePapierSpieler
+     */
+    public void fuegeTeilnehmerHinzu(SteinScherePapierSpieler turnierTeilnehmer) {
+
+        if (!this.teilnehmer.contains(turnierTeilnehmer)) {
+
+            this.teilnehmer.add(turnierTeilnehmer);
+        }
     }
 
+    /**
+     * Setzt die Anzahl der Runden pro Spiel für das Turnier fest.
+     * @param runden Die Rundenzahl
+     */
+    public void setzeRundenProSpiel(int runden) {
+
+        this.rundenProSpiel = runden;
+    }
+
+
+    /**
+     * Startet das Turnier mit den vorhandenen Teilnehmern und der eingestellten Anzahl Runden pro Spiel.
+     */
     public void starteTurnier() {
-        for (int i = 0; i < teilnehmer.size(); ++i) {
-            for (int j = i + 1; j < teilnehmer.size(); ++j) {
-                //this.spiele.push(new Spiel(teilnehmer[i], teilnehmer[j])
-                spiele[i][j] = new Spiel(teilnehmer.get(i), teilnehmer.get(j), runden);
-                spiele[j][i] = spiele[i][j];
 
-                spiele[i][j].starteSpiel();
+        //Für jeden Teilnehmer ...
+        for (int i = 0; i < teilnehmer.size(); i++) {
+
+            //Für alle verbleibenden Teilnehmer...
+            for (int j = i + 1; j < teilnehmer.size(); j++) {
+
+                Spiel spiel = new Spiel(teilnehmer.get(i), teilnehmer.get(j), this.rundenProSpiel);
+
+                spiel.starteSpiel();
+                spiele.add(spiel);
             }
         }
     }
 
-    public SteinScherePapierSpieler ermittleGesamtGewinner() {
-        int[] punkte = new int[teilnehmer.size()];
-        int maximalePunktzahl = 0;
-        SteinScherePapierSpieler aktuellerGewinner = null;
+    //TODO
+    public SteinScherePapierSpieler starteAuswertung() {
 
-        for (int i = 0; i < spiele.length; ++i) {
-            for (int j = i + 1; j < spiele.length; ++j) {
-                Integer indexDesGewinners;
-                SteinScherePapierSpieler gewinner = spiele[i][j].gibGewinner();
-                if (gewinner == teilnehmer.get(i))
-                    indexDesGewinners = i;
-                else if (gewinner == teilnehmer.get(j))
-                    indexDesGewinners = j;
-                else
-                    indexDesGewinners = null;
+//        HashMap<SteinScherePapierSpieler, Integer> ergebnisse = new HashMap<>();
+//
+//
+//        int[] punkte = new int[teilnehmer.size()];
+//        int maximalePunktzahl = 0;
+//        SteinScherePapierSpieler aktuellerGewinner = null;
+//
+//        for (int i = 0; i < spiele.length; ++i) {
+//            for (int j = i + 1; j < spiele.length; ++j) {
+//                Integer indexDesGewinners;
+//                SteinScherePapierSpieler gewinner = spiele[i][j].gibGewinner();
+//                if (gewinner == teilnehmer.get(i))
+//                    indexDesGewinners = i;
+//                else if (gewinner == teilnehmer.get(j))
+//                    indexDesGewinners = j;
+//                else
+//                    indexDesGewinners = null;
+//
+//                if (indexDesGewinners != null) {
+//                    punkte[indexDesGewinners] += 1;
+//
+//                    if (maximalePunktzahl < punkte[indexDesGewinners]) {
+//                        maximalePunktzahl = punkte[indexDesGewinners];
+//                        aktuellerGewinner = teilnehmer.get(indexDesGewinners);
+//                    } else if (maximalePunktzahl == punkte[indexDesGewinners])
+//                        aktuellerGewinner = null;
+//                }
+//            }
+//        }
 
-                if (indexDesGewinners != null) {
-                    punkte[indexDesGewinners] += 1;
-
-                    if (maximalePunktzahl < punkte[indexDesGewinners]) {
-                        maximalePunktzahl = punkte[indexDesGewinners];
-                        aktuellerGewinner = teilnehmer.get(indexDesGewinners);
-                    } else if (maximalePunktzahl == punkte[indexDesGewinners])
-                        aktuellerGewinner = null;
-                }
-            }
-        }
-
-        return aktuellerGewinner;
+        return null;
     }
 }

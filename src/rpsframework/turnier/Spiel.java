@@ -4,6 +4,7 @@ import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Ein Spiel ist eine Begegnung zwischen zwei Spielern und läuft über eine vorgegebene Zahl von Runden. Jede Runde ist
@@ -44,8 +45,9 @@ class Spiel {
      */
     void starteSpiel() {
 
-        spieler1.vorbereitenAufNeuesSpiel();
-        spieler2.vorbereitenAufNeuesSpiel();
+        // Wir informieren die Spieler darüber, dass ein neues Spiel beginnt.
+        spieler1.starteNeuesSpiel(this.runden);
+        spieler2.starteNeuesSpiel(this.runden);
 
         Symbol aktuellesSymbolSpieler1;
         Symbol aktuellesSymbolSpieler2;
@@ -57,6 +59,10 @@ class Spiel {
             aktuellesSymbolSpieler2 = spieler2.gibSymbol();
 
             Duell aktuellesDuell = new Duell(aktuellesSymbolSpieler1, aktuellesSymbolSpieler2);
+
+            // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
+            spieler1.nimmDuell(aktuellesDuell, i + 1);
+            spieler2.nimmDuell(aktuellesDuell, i + 1);
 
             //Die Ergebnisse der einzelnen Duelle merken wir uns direkt
             switch (aktuellesDuell.gibErgebnis()) {
@@ -81,7 +87,7 @@ class Spiel {
     }
 
     /**
-     * Gibt das Ergebnis des Duells zurück.
+     * Gibt das Ergebnis des Spiels zurück.
      * @return 1, falls Spieler 1 gewinnt, 2, falls Spieler gewinnt, 0 bei unentschieden.
      */
     int gibErgebnis() {
@@ -91,5 +97,27 @@ class Spiel {
                 : spieler2siege > spieler1siege
                 ? Duell.rueckgabewertSpielerZweiGewinnt
                 : Duell.rueckgabewertUnentschieden;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        boolean istGleich = false;
+
+        if (object != null && this.getClass() == object.getClass()) {
+
+            Spiel spiel = (Spiel) object;
+            istGleich = this.runden == spiel.runden
+                    && (spieler1.equals(spiel.spieler1) && spieler2.equals(spiel.spieler2))
+                    || (spieler1.equals(spiel.spieler2) && spieler2.equals(spiel.spieler1));
+        }
+
+        return istGleich;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(spieler1, spieler2, runden);
     }
 }

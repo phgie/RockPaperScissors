@@ -1,7 +1,9 @@
 package rpsframework.basis;
 
+import rpsframework.turnier.Duell;
+
 /**
- * Die Vorgabe fuer einen SteinScherePapierSpieler.
+ * Die Vorgabe für einen SteinScherePapierSpieler.
  *
  * Ein Spieler kann jederzeit innerhalb einer Spielrunde nach einem Symbol gefragt werden und muss dieses dann zurückgeben.
  * Ein Spieler sollte sich die aktuelle Spielrunde merken, um seine Taktik während des Spiels gegen einen Gegner anzupassen.
@@ -9,19 +11,30 @@ package rpsframework.basis;
  */
 public interface SteinScherePapierSpieler {
 
+    /**
+     * Gibt den Namen des Spielers zurück.
+     * @return Der Name des Spielers als String
+     */
     public String getName();
 
     /**
-     * Fragt den Spieler nach dem naechsten Symbol, welches er spielen moechte.
-     * @return Das naechste Symbol
+     * Fragt den Spieler nach dem nächsten Symbol, welches er spielen möchte.
+     * @return Das nächste Symbol
      */
-    Symbol gibSymbol();
+    public Symbol gibSymbol();
 
     /**
-     * Teil dem Spieler mit, dass ein neues Spiel gegen einen neuen Gegner beginnt. Es ist ratsam, alle Informationen fuer
+     * Teil dem Spieler mit, dass ein neues Spiel gegen einen neuen Gegner beginnt. Es ist ratsam, alle Informationen für
      * das vorherige Spiel zu verwerfen, da nicht garantiert wird, dass man direkt wieder gegen denselben Spieler spielt.
+     * @param runden Die Anzahl der Runden für das neue Spiel
      */
-    void vorbereitenAufNeuesSpiel();
+    public void starteNeuesSpiel(int runden);
 
-    default void siehtSymbolVonGegner(Symbol gegnerischesSymbol) {}
+    /**
+     * Teilt dem Spieler das Duell für die übergebene Runde mit. Der Spieler kann dadurch auf das vom Gegner gespielte
+     * Symbol zugreifen
+     * @param duell Das Duell. Es beinhaltet Informationen über die von den Spielern in dieser Runde gespielten Symbole.
+     * @param runde Die Runde, in der das Duell gespielt wurde
+     */
+    public void nimmDuell(Duell duell, int runde);
 }

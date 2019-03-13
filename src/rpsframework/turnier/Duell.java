@@ -13,18 +13,36 @@ public class Duell {
     public static final int rueckgabewertUnentschieden = 0;
 
     /* Die von den Spielern in diesem einen Duell gespielten Symbole */
-    private Symbol spieler1Symbol;
-    private Symbol spieler2Symbol;
+    private Symbol spielerEinsSymbol;
+    private Symbol spielerZweiSymbol;
 
     /**
      * Erzeugt ein neues Duell mit den zwei gegebenen Spielersymbolen. Die Symbole sollten nicht leer sein.
-     * @param spieler1Symbol Das Symbol von Spieler 1, Objekt Enum-Klasse Symbol
-     * @param spieler2Symbol Das Symbol von Spieler 2, Objekt Enum-Klasse Symbol
+     * @param spielerEinsSymbol Das Symbol von Spieler 1, Objekt Enum-Klasse Symbol
+     * @param spielerZweiSymbol Das Symbol von Spieler 2, Objekt Enum-Klasse Symbol
      */
-    public Duell(Symbol spieler1Symbol, Symbol spieler2Symbol) {
+    public Duell(Symbol spielerEinsSymbol, Symbol spielerZweiSymbol) {
 
-        this.spieler1Symbol = spieler1Symbol;
-        this.spieler2Symbol = spieler2Symbol;
+        this.spielerEinsSymbol = spielerEinsSymbol;
+        this.spielerZweiSymbol = spielerZweiSymbol;
+    }
+
+    /**
+     * Gibt das von Spieler 1 gewählte Symbol zurück.
+     * @return Ein Symbol der Klasse Symbol.
+     */
+    public Symbol gibSpielerEinsSymbol() {
+
+        return this.spielerEinsSymbol;
+    }
+
+    /**
+     * Gibt das von Spieler 2 gewählte Symbol zurück.
+     * @return Ein Symbol der Klasse Symbol.
+     */
+    public Symbol gibSpielerZweiSymbol() {
+
+        return this.spielerZweiSymbol;
     }
 
     /**
@@ -35,11 +53,11 @@ public class Duell {
 
         int ergebnis;
 
-        if (Symbol.symbolEinsSchlaegtSymbolZwei(spieler1Symbol, spieler2Symbol)) {
+        if (Symbol.symbolEinsSchlaegtSymbolZwei(spielerEinsSymbol, spielerZweiSymbol)) {
 
             // Spieler 1 gewinnt
             ergebnis = rueckgabewertSpielerEinsGewinnt;
-        } else if (Symbol.symbolEinsSchlaegtSymbolZwei(spieler2Symbol, spieler1Symbol)) {
+        } else if (Symbol.symbolEinsSchlaegtSymbolZwei(spielerZweiSymbol, spielerEinsSymbol)) {
 
             // Spieler 2 gewinnt
             ergebnis = rueckgabewertSpielerZweiGewinnt;
