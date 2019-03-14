@@ -67,6 +67,9 @@ public class Duell {
             ergebnis = rueckgabewertUnentschieden;
         }
 
+        //TODO REMOVE
+        System.out.println("Duell: " + spielerEinsSymbol + " vs. " + spielerZweiSymbol);
+
         return ergebnis;
     }
 }

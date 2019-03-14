@@ -1,5 +1,7 @@
 package rpsframework.basis;
 
+import java.security.SecureRandom;
+
 /**
  * Die Basissymbole, mit denen wir spielen
  */
@@ -7,6 +9,8 @@ public enum Symbol {
 
     /* Die eigentlichen Symbole als enumeration Konstante */
     STEIN, PAPIER, SCHERE;
+
+    private static final SecureRandom randomMechanism = new SecureRandom();
 
     /**
      * Wahr, wenn das erste Symbol das zweite schlägt. In allen anderen Fällen gewinnt entweder das zweite Symbol oder
@@ -22,5 +26,10 @@ public enum Symbol {
         return (symbol1.equals(STEIN) && symbol2.equals(SCHERE))
                 || (symbol1.equals(PAPIER) && symbol2.equals(STEIN))
                 || (symbol1.equals(SCHERE) && symbol2.equals(PAPIER));
+    }
+
+    public static Symbol getRandom() {
+
+        return Symbol.values()[randomMechanism.nextInt(Symbol.values().length)];
     }
 }

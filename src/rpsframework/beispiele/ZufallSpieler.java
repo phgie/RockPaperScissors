@@ -4,22 +4,19 @@ import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 import rpsframework.turnier.Duell;
 
-/**
- * Ein einfacher Beispielgegner, der immer Stein spielt
- */
-public class SpielerStein implements SteinScherePapierSpieler {
+public class ZufallSpieler implements SteinScherePapierSpieler {
 
     @Override
     public String getName() {
 
-        return "SteinSpieler";
+        return "ZufallSpieler";
     }
 
     @Override
     public Symbol gibSymbol() {
 
-        // Spielt immer Stein
-        return Symbol.STEIN;
+        // Hole ein zufälliges Symbol
+        return Symbol.getRandom();
     }
 
     @Override

@@ -84,6 +84,9 @@ class Spiel {
                     break;
             }
         }
+
+        //TODO REMOVE
+        System.out.println("Spiel zwischen " + spieler1.getName() + " und " + spieler2.getName() + ": Ergebnis ist " + gibErgebnis());
     }
 
     /**
