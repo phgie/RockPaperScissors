@@ -2,18 +2,17 @@ package rpsframework.beispiele;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-
-import java.util.ArrayList;
+import rpsframework.strategie.Angriffsmuster;
 
 /**
  * Ein einfacher Beispielgegner, der immer Stein, Schere und Papier abwechselnd in der selben Reihenfolge spielt.
  */
-public class SpielerZyklus implements SteinScherePapierSpieler {
+public class SpielerMuster implements SteinScherePapierSpieler {
 
     /**
-     * Liste mit Symbolen, welche abwechselnd gespielt werden sollen
+     * Angriffsmuster
      */
-    private ArrayList<Symbol> symbolListe = new ArrayList<>();
+    private Angriffsmuster muster;
 
     /**
      * Rundenzaehler
@@ -27,7 +26,7 @@ public class SpielerZyklus implements SteinScherePapierSpieler {
      */
     @Override
     public String getName() {
-        return "Frank Dreher";
+        return "Max Muster";
     }
 
     /**
@@ -40,30 +39,32 @@ public class SpielerZyklus implements SteinScherePapierSpieler {
     @Override
     public Symbol gibSymbol() {
 
-        // Runde hochzählen
+        // Hole nächstes Symbol
+        Symbol auswahl =  muster.gibNaechstesSymbol(runde);
+
+        // Zähle Runde um eins hoch
         runde = runde + 1;
 
-        // Naechstes Symbol zurueckgeben
-        return  symbolListe.get(runde%3);
+        return auswahl;
     }
 
     /**
-     * Initialisiert ein neues Spiel. Setzt den Rundenzähler auf 0
-     * und legt die Reihenfolge der zurückgegebenen Symbole fest
-     * (Erst Schere, dann Stein, dann Papier).
+     * Initialisiert ein neues Spiel und legt die Reihenfolge der
+     * zurückgegebenen Symbole fest (Erst 2x Stein, dann 3x Schere, dann 4x Papier).
      *
      * @param runden Die Anzahl der Runden für das neue Spiel
      */
     @Override
     public void starteNeuesSpiel(int runden) {
-        // Rundenzaehler zuruecksetzen
+
+        // Setze Rundenzähler zurück
         runde = 0;
 
-        // Reihenfolge der Symbole festlegen
-        symbolListe.clear();
-        symbolListe.add(Symbol.SCHERE);
-        symbolListe.add(Symbol.STEIN);
-        symbolListe.add(Symbol.PAPIER);
+        // Definiere ein Angriffsmuster
+        muster = Angriffsmuster.zuErst(Symbol.STEIN).mehrmals(2)
+                .dann(Symbol.SCHERE).mehrmals(3)
+                .dann(Symbol.PAPIER).mehrmals(4)
+                .undWiederVonVorne();
     }
 
     @Override

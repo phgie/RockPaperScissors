@@ -8,12 +8,22 @@ import rpsframework.basis.Symbol;
  */
 public class SpielerStein implements SteinScherePapierSpieler {
 
+    /**
+     * Gibt den Namen dieses Spielers zurück
+     *
+     * @return Name des Spielers
+     */
     @Override
     public String getName() {
 
-        return "SteinSpieler";
+        return "Stefan Stein";
     }
 
+    /**
+     * Gibt immer das Symbol Stein zurück.
+     *
+     * @return Symbol Stein
+     */
     @Override
     public Symbol gibSymbol() {
 
