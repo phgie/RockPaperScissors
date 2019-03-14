@@ -19,33 +19,33 @@ class SteinScherePapierSpielerTest {
             assertEquals(Symbol.PAPIER, spieler.gibSymbol(), "Fehler in Runde " + i);
     }
 
-//    @Test
-//    void spieltImmerPapier_mitAngriffsmuster() {
-//        TestSpieler spieler = new TestSpieler(Angriffsmuster.zuErst(Symbol.PAPIER).undWiederVonVorne());
-//
-//        // "IMMER" == 1000 Runden lang
-//        for (int i = 0; i < 1000; ++i)
-//            assertEquals(Symbol.PAPIER, spieler.gibSymbol(), "Fehler in Runde " + i);
-//    }
+    @Test
+    void spieltImmerPapier_mitAngriffsmuster() {
+        TestSpieler spieler = new TestSpieler(Angriffsmuster.zuErst(Symbol.PAPIER).undWiederVonVorne());
 
-//    @Test
-//    void spieltImmerAbwechselndSchereSteinPapier() {
-//        TestSpieler spieler = new TestSpieler(Angriffsmuster
-//                .zuErst(Symbol.SCHERE)
-//                .dann(Symbol.STEIN)
-//                .dann(Symbol.PAPIER).undWiederVonVorne());
-//
-//        // "IMMER" == 1000 Runden lang
-//        for (int i = 0; i < 1000; ++i)
-//            if (i % 3 == 0)
-//                assertEquals(Symbol.SCHERE, spieler.gibSymbol());
-//            else if (i % 3 == 1)
-//                assertEquals(Symbol.STEIN, spieler.gibSymbol());
-//            else
-//                assertEquals(Symbol.PAPIER, spieler.gibSymbol());
-//    }
+        // "IMMER" == 1000 Runden lang
+        for (int i = 0; i < 1000; ++i)
+            assertEquals(Symbol.PAPIER, spieler.gibSymbol(), "Fehler in Runde " + i);
+    }
 
-    class TestSpieler implements SteinScherePapierSpieler {
+    @Test
+    void spieltImmerAbwechselndSchereSteinPapier() {
+        TestSpieler spieler = new TestSpieler(Angriffsmuster
+                .zuErst(Symbol.SCHERE)
+                .dann(Symbol.STEIN)
+                .dann(Symbol.PAPIER).undWiederVonVorne());
+
+        // "IMMER" == 1000 Runden lang
+        for (int i = 0; i < 1000; ++i)
+            if (i % 3 == 0)
+                assertEquals(Symbol.SCHERE, spieler.gibSymbol());
+            else if (i % 3 == 1)
+                assertEquals(Symbol.STEIN, spieler.gibSymbol());
+            else
+                assertEquals(Symbol.PAPIER, spieler.gibSymbol());
+    }
+
+    public class TestSpieler implements SteinScherePapierSpieler {
         Symbol zuSpielendesSymbol;
 
         int rundenZaehler = 0;
