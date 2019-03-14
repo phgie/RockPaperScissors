@@ -1,38 +1,68 @@
 package test.rpsframework.basis;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rpsframework.turnier.Duell;
+import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
+import rpsframework.turnier.Duell;
+import rpsframework.turnier.SpielerMock;
 
 class DuellTest {
+
+    private Duell duell;
+    private SteinScherePapierSpieler spieler1;
+    private SteinScherePapierSpieler spieler2;
+
+    @BeforeEach
+    void setUp() {
+
+        this.duell = new Duell();
+        this.spieler1 = new SpielerMock("SpielerMock 1");
+        this.spieler2 = new SpielerMock("SpielerMock 2");
+    }
 
     @Test
     void papierBesiegtStein() {
 
-        Assertions.assertEquals(Duell.rueckgabewertSpielerEinsGewinnt, new Duell(Symbol.PAPIER, Symbol.STEIN).gibErgebnis());
-        Assertions.assertEquals(Duell.rueckgabewertSpielerZweiGewinnt, new Duell(Symbol.STEIN, Symbol.PAPIER).gibErgebnis());
+        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
+        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.PAPIER);
+
+        Assertions.assertEquals(duell.gibGewinner(), spieler2);
+        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
+        Assertions.assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
     void steinBesiegtSchere() {
 
-        Assertions.assertEquals(Duell.rueckgabewertSpielerEinsGewinnt, new Duell(Symbol.STEIN, Symbol.SCHERE).gibErgebnis());
-        Assertions.assertEquals(Duell.rueckgabewertSpielerZweiGewinnt, new Duell(Symbol.SCHERE, Symbol.STEIN).gibErgebnis());
+        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
+        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.SCHERE);
+
+        Assertions.assertEquals(duell.gibGewinner(), spieler1);
+        Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
+        Assertions.assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
     void schereBesiegtPapier() {
 
-        Assertions.assertEquals(Duell.rueckgabewertSpielerEinsGewinnt, new Duell(Symbol.SCHERE, Symbol.PAPIER).gibErgebnis());
-        Assertions.assertEquals(Duell.rueckgabewertSpielerZweiGewinnt, new Duell(Symbol.PAPIER, Symbol.SCHERE).gibErgebnis());
+        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.PAPIER);
+        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.SCHERE);
+
+        Assertions.assertEquals(duell.gibGewinner(), spieler2);
+        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
+        Assertions.assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
     void testAufUnentschieden() {
 
-        Assertions.assertEquals(Duell.rueckgabewertUnentschieden, new Duell(Symbol.SCHERE, Symbol.SCHERE).gibErgebnis());
-        Assertions.assertEquals(Duell.rueckgabewertUnentschieden, new Duell(Symbol.PAPIER, Symbol.PAPIER).gibErgebnis());
-        Assertions.assertEquals(Duell.rueckgabewertUnentschieden, new Duell(Symbol.STEIN, Symbol.STEIN).gibErgebnis());
+        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
+        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.STEIN);
+
+        Assertions.assertNull(duell.gibGewinner());
+        Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
+        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
     }
 }

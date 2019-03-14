@@ -1,26 +1,36 @@
 package test.rpsframework.turnier;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import rpsframework.turnier.SpielerMock;
+import rpsframework.turnier.Turnier;
+
 public class TurnierTest {
 
-//    @Test
-//    void testeTeilnehmerHinzufuegen() {
-//
-//        Turnier turnier = new Turnier();
-//
-//
-//        turnier.fuegeTeilnehmerHinzu(new TestSpieler(Symbol.STEIN), new TestSpieler(Symbol.PAPIER));
-//        turnier.starteTurnier();
-//
-//        assertEquals("PAPIER Spieler", turnier.ermittleGesamtGewinner().getName());
-//    }
-//
-//    @Test
-//    void keinGewinnerWennAlleSpielerDieselbePunktzahlHaben() {
-//
-//        Turnier turnier = new Turnier();
-//        turnier.fuegeTeilnehmerHinzu(new TestSpieler(Symbol.STEIN), new TestSpieler(Symbol.PAPIER), new TestSpieler(Symbol.SCHERE));
-//        turnier.starteTurnier();
-//
-//        assertNull(turnier.ermittleGesamtGewinner());
-//    }
+    private Turnier turnier;
+    private SpielerMock spieler1;
+    private SpielerMock spieler2;
+
+    @BeforeEach
+    void setUp() {
+
+        this.turnier = new Turnier();
+        this.spieler1 = new SpielerMock("SpielerMock 1");
+        this.spieler2 = new SpielerMock("SpielerMock 2");
+
+        this.turnier.fuegeTeilnehmerHinzu(this.spieler1);
+        this.turnier.fuegeTeilnehmerHinzu(this.spieler2);
+    }
+
+    @Test
+    void testeAnzahlSpiele() {
+
+        //TODO
+    }
+
+    @Test
+    void keinGewinnerWennAlleSpielerDieselbePunktzahlHaben() {
+
+        //TODO
+    }
 }
