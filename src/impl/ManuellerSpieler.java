@@ -2,9 +2,8 @@ package impl;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-import rpsframework.turnier.Duell;
 
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Ein Spieler kann...
@@ -54,9 +53,8 @@ public class ManuellerSpieler implements SteinScherePapierSpieler {
     }
 
     @Override
-    public void nimmDuell(Duell duell, int runde) {
-        System.out.println("Ergebnis: " + duell.gibErgebnis());
-        System.out.println("Symbol Spieler 1: " + duell.gibSpielerEinsSymbol());
-        System.out.println("Symbol Spieler 2: " + duell.gibSpielerZweiSymbol());
+    public void nimmGegnerSymbol(Symbol symbol, int runde) {
+
+        //wird nicht verwendet
     }
 }

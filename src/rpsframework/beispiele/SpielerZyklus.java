@@ -1,9 +1,9 @@
 package rpsframework.beispiele;
 
-import java.util.ArrayList;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-import rpsframework.turnier.Duell;
+
+import java.util.ArrayList;
 
 /**
  * Ein einfacher Beispielgegner, der immer Stein, Schere und Papier abwechselnd in der selben Reihenfolge spielt.
@@ -48,7 +48,8 @@ public class SpielerZyklus implements SteinScherePapierSpieler {
     }
 
     @Override
-    public void nimmDuell(Duell duell, int runde) {
+    public void nimmGegnerSymbol(Symbol symbol, int runde) {
+
         // Wird nicht verwendet
     }
 }

@@ -2,7 +2,6 @@ package rpsframework.beispiele;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-import rpsframework.turnier.Duell;
 
 public class ZufallSpieler implements SteinScherePapierSpieler {
 
@@ -26,7 +25,7 @@ public class ZufallSpieler implements SteinScherePapierSpieler {
     }
 
     @Override
-    public void nimmDuell(Duell duell, int runde) {
+    public void nimmGegnerSymbol(Symbol symbol, int runde) {
 
         // Wird nicht verwendet
     }

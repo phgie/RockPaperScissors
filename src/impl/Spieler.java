@@ -2,7 +2,6 @@ package impl;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-import rpsframework.turnier.Duell;
 
 /**
  * Ein Spieler kann...
@@ -26,5 +25,5 @@ public class Spieler implements SteinScherePapierSpieler {
     public void starteNeuesSpiel(int runden) { }
 
     @Override
-    public void nimmDuell(Duell duell, int runde) { }
+    public void nimmGegnerSymbol(Symbol symbol, int runde) {  }
 }
