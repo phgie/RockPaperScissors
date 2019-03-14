@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * Ein Spieler kann...
- *
+ * <p>
  * ... an einem Spiel gegen einen anderen Spieler teilnehmen
  * ....an einem Turnier teilnehmen und dabei gegen mehrere Spieler ein Spiel bestreiten
  */
@@ -55,6 +55,8 @@ public class ManuellerSpieler implements SteinScherePapierSpieler {
 
     @Override
     public void nimmDuell(Duell duell, int runde) {
-
+        System.out.println("Ergebnis: " + duell.gibErgebnis());
+        System.out.println("Symbol Spieler 1: " + duell.gibSpielerEinsSymbol());
+        System.out.println("Symbol Spieler 2: " + duell.gibSpielerZweiSymbol());
     }
 }
