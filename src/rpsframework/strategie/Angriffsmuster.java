@@ -33,7 +33,7 @@ public class Angriffsmuster {
         return new AngriffsmusterBuilder().symbolHinzufuegen(erstesSymbol);
     }
 
-    static class AngriffsmusterBuilder {
+    public static class AngriffsmusterBuilder {
         private ArrayList<Symbol> symbole = new ArrayList<>();
         private Symbol zuletztHinzugefuegtesSymbol = null;
 
