@@ -1,7 +1,5 @@
 package rpsframework.basis;
 
-import rpsframework.turnier.Duell;
-
 /**
  * Die Vorgabe für einen SteinScherePapierSpieler.
  *
@@ -31,10 +29,9 @@ public interface SteinScherePapierSpieler {
     public void starteNeuesSpiel(int runden);
 
     /**
-     * Teilt dem Spieler das Duell für die übergebene Runde mit. Der Spieler kann dadurch auf das vom Gegner gespielte
-     * Symbol zugreifen
-     * @param duell Das Duell. Es beinhaltet Informationen über die von den Spielern in dieser Runde gespielten Symbole.
-     * @param runde Die Runde, in der das Duell gespielt wurde
+     * Teilt dem Spieler das Symbol mit, welches der Gegner in der angegebenen Runde gespielt hat.
+     * @param symbol Das vom Gegner gespielte Symbol in der angegebenen Runde
+     * @param runde Die Spielrunde
      */
-    public void nimmDuell(Duell duell, int runde);
+    public void nimmGegnerSymbol(Symbol symbol, int runde);
 }

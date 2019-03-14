@@ -13,7 +13,6 @@ public class Turnier {
     private static final int standardRundenZahl = 100;
 
     /* Wir speichern hier die Teilnehmer des Turniers */
-//    private HashMap<String, SteinScherePapierSpieler> teilnehmer;
     private ArrayList<SteinScherePapierSpieler> teilnehmer;
 
     /* Wir speichern die Spiele des Turniers in einem HashSet */

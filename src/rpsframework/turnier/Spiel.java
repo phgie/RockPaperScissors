@@ -4,6 +4,7 @@ import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -15,13 +16,13 @@ class Spiel {
     private SteinScherePapierSpieler spieler1;
     private SteinScherePapierSpieler spieler2;
 
+    private int runden;
+
     /* Die Duelle in diesem Spiel. */
     private ArrayList<Duell> duelle;
 
-    private int runden;
-
-    private int spieler1siege;
-    private int spieler2siege;
+    /* Die Punkte der beiden Spieler */
+    private HashMap<SteinScherePapierSpieler, Integer> punkte;
 
 
     /**
@@ -35,9 +36,15 @@ class Spiel {
         this.spieler1 = spieler1;
         this.spieler2 = spieler2;
 
-        this.duelle = new ArrayList<>();
-
         this.runden = runden;
+
+        this.duelle = new ArrayList<>();
+        this.punkte = new HashMap<>();
+
+        // Die Punktzahlen der Spieler auf 0 setzen. "null" speichert die Punkte für Unentschieden.
+        this.punkte.put(spieler1, 0);
+        this.punkte.put(spieler2, 0);
+        this.punkte.put(null, 0);
     }
 
     /**
@@ -49,73 +56,50 @@ class Spiel {
         spieler1.starteNeuesSpiel(this.runden);
         spieler2.starteNeuesSpiel(this.runden);
 
-        Symbol aktuellesSymbolSpieler1;
-        Symbol aktuellesSymbolSpieler2;
-
         //Für jede Runde bis zur letzten ...
         for (int i = 0; i < this.runden; i++) {
 
-            aktuellesSymbolSpieler1 = spieler1.gibSymbol();
-            aktuellesSymbolSpieler2 = spieler2.gibSymbol();
+            Symbol aktuellesSymbolSpieler1 = spieler1.gibSymbol();
+            Symbol aktuellesSymbolSpieler2 = spieler2.gibSymbol();
 
-            Duell aktuellesDuell = new Duell(aktuellesSymbolSpieler1, aktuellesSymbolSpieler2);
+            Duell aktuellesDuell = new Duell();
+            aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler1, aktuellesSymbolSpieler1);
+            aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler2, aktuellesSymbolSpieler2);
 
             // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
-            spieler1.nimmDuell(aktuellesDuell, i + 1);
-            spieler2.nimmDuell(aktuellesDuell, i + 1);
+            spieler1.nimmGegnerSymbol(aktuellesSymbolSpieler2, i + 1);
+            spieler2.nimmGegnerSymbol(aktuellesSymbolSpieler1, i + 1);
 
-            //Die Ergebnisse der einzelnen Duelle merken wir uns direkt
-            switch (aktuellesDuell.gibErgebnis()) {
+            /* Wir holen uns den Gewinner des Duells und erhöhen seinen Punktestand. Sollte das Duell unentschieden sein,
+               speichern wir auch diese Punkte (unter dem "Spieler" null). */
+            SteinScherePapierSpieler duellGewinner = aktuellesDuell.gibGewinner();
+            this.punkte.put(duellGewinner, this.punkte.get(duellGewinner) + 1);
 
-                case Duell.rueckgabewertSpielerEinsGewinnt:
-
-                    // Spieler 1 gewinnt
-                    spieler1siege++;
-                    break;
-                case Duell.rueckgabewertSpielerZweiGewinnt:
-
-                    // Spieler 2 gewinnt
-                    spieler2siege++;
-                    break;
-                case Duell.rueckgabewertUnentschieden:
-
-                    /* Unentschieden. Wir notieren hier nichts, da sich die Anzahl der Unentschieden auch anders
-                       ermitteln lässt (Anzahl der Runden insgesamt minus die Siege von beiden Spielern) */
-                    break;
-            }
+            //TODO REMOVE
+            System.out.println("Duell: " + spieler1.getName() + " (" + aktuellesDuell.gibSpielerSymbol(spieler1)
+                    + ") vs. " + spieler2.getName() + " (" + aktuellesDuell.gibSpielerSymbol(spieler2) + ") -- Gewinner: "
+                    + duellGewinner);
         }
 
         //TODO REMOVE
-        System.out.println("Spiel zwischen " + spieler1.getName() + " und " + spieler2.getName() + ": Ergebnis ist " + gibErgebnis());
+        System.out.println("Spiel: " + spieler1.getName() + " vs. " + spieler2.getName() + ": "
+                + gibSpielerPunkte(spieler1) + ":" + gibSpielerPunkte(spieler2) + " (" + gibSpielerPunkte(null) + " Unentschieden)");
     }
 
     /**
-     * Gibt das Ergebnis des Spiels zurück.
-     * @return 1, falls Spieler 1 gewinnt, 2, falls Spieler gewinnt, 0 bei unentschieden.
+     * Gibt die Punktzahl des angegebenen Spielers zurück bzw. die Anzahl von Unentschieden, falls der angegebene Spieler "null" ist.
+     * @param spieler Der Spieler, dessen Punktzahl zurückgegeben werden soll.
+     * @return Die aktuelle Punktzahl des Spielers.
      */
-    int gibErgebnis() {
+    public int gibSpielerPunkte(SteinScherePapierSpieler spieler) {
 
-        return spieler1siege > spieler2siege
-                ? Duell.rueckgabewertSpielerEinsGewinnt
-                : spieler2siege > spieler1siege
-                ? Duell.rueckgabewertSpielerZweiGewinnt
-                : Duell.rueckgabewertUnentschieden;
+        return this.punkte.get(spieler);
     }
 
     @Override
     public boolean equals(Object object) {
 
-        boolean istGleich = false;
-
-        if (object != null && this.getClass() == object.getClass()) {
-
-            Spiel spiel = (Spiel) object;
-            istGleich = this.runden == spiel.runden
-                    && (spieler1.equals(spiel.spieler1) && spieler2.equals(spiel.spieler2))
-                    || (spieler1.equals(spiel.spieler2) && spieler2.equals(spiel.spieler1));
-        }
-
-        return istGleich;
+        return object != null && this.getClass() == object.getClass() && this.punkte.equals(((Spiel) object).punkte);
     }
 
     @Override

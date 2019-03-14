@@ -1,75 +1,74 @@
 package rpsframework.turnier;
 
+import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
+
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Ein Duell ist ein einzelnes Aufeinandertreffen zweier Spielersymbole. In einem Duell wird ein Gewinner (falls es einen gibt) ermittelt.
  */
 public class Duell {
 
-    /* Rückgabewerte für die Gewinnfälle. */
-    public static final int rueckgabewertSpielerEinsGewinnt = 1;
-    public static final int rueckgabewertSpielerZweiGewinnt = 2;
-    public static final int rueckgabewertUnentschieden = 0;
-
     /* Die von den Spielern in diesem einen Duell gespielten Symbole */
-    private Symbol spielerEinsSymbol;
-    private Symbol spielerZweiSymbol;
+    private HashMap<SteinScherePapierSpieler, Symbol> symbole;
 
     /**
-     * Erzeugt ein neues Duell mit den zwei gegebenen Spielersymbolen. Die Symbole sollten nicht leer sein.
-     * @param spielerEinsSymbol Das Symbol von Spieler 1, Objekt Enum-Klasse Symbol
-     * @param spielerZweiSymbol Das Symbol von Spieler 2, Objekt Enum-Klasse Symbol
+     * Erzeugt ein neues Duell für zwei Spieler
      */
-    public Duell(Symbol spielerEinsSymbol, Symbol spielerZweiSymbol) {
+    public Duell() {
 
-        this.spielerEinsSymbol = spielerEinsSymbol;
-        this.spielerZweiSymbol = spielerZweiSymbol;
+        this.symbole = new HashMap<>();
     }
 
     /**
-     * Gibt das von Spieler 1 gewählte Symbol zurück.
-     * @return Ein Symbol der Klasse Symbol.
+     * Fügt das vom übergebenen Spieler gewählte Symbol dem Duell hinzu.
+     * @param spieler Der Spieler, der das Symbol gespielt hat.
+     * @param symbol Das Symbol, welches der Spieler gewählt hat.
      */
-    public Symbol gibSpielerEinsSymbol() {
+    public void fuegeSpielerSymbolHinzu(SteinScherePapierSpieler spieler, Symbol symbol) {
 
-        return this.spielerEinsSymbol;
+        this.symbole.put(spieler, symbol);
     }
 
     /**
-     * Gibt das von Spieler 2 gewählte Symbol zurück.
-     * @return Ein Symbol der Klasse Symbol.
+     * Gibt das vom angegebenen Spieler gewählte Symbol zurück
+     * @param spieler Der Spieler, dessen gewähltes Symbol zurückgegeben werden soll.
+     * @return Das vom Spieler gewählte Symbol
      */
-    public Symbol gibSpielerZweiSymbol() {
+    public Symbol gibSpielerSymbol(SteinScherePapierSpieler spieler) {
 
-        return this.spielerZweiSymbol;
+        return this.symbole.get(spieler);
     }
 
     /**
-     * Gibt das Ergebnis des Duells zurück.
-     * @return 1, falls Spieler 1 gewinnt, 2, falls Spieler gewinnt, 0 bei unentschieden.
+     * Gibt den Gewinner dieses Duells zurück oder Null, wenn es ein Unentschieden gab.
+     * @return Den Gewinner des Duells, oder Null, wenn es ein Unentschieden gab.
      */
-    public int gibErgebnis() {
+    public SteinScherePapierSpieler gibGewinner() {
 
-        int ergebnis;
+        SteinScherePapierSpieler gewinner;
 
-        if (Symbol.symbolEinsSchlaegtSymbolZwei(spielerEinsSymbol, spielerZweiSymbol)) {
+        // Wir müssen zuerst beide Spieler kennen..
+        Iterator<SteinScherePapierSpieler> spielerIter = this.symbole.keySet().iterator();
+        SteinScherePapierSpieler spieler1 = spielerIter.next();
+        SteinScherePapierSpieler spieler2 = spielerIter.next();
+
+        if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler1), this.symbole.get(spieler2))) {
 
             // Spieler 1 gewinnt
-            ergebnis = rueckgabewertSpielerEinsGewinnt;
-        } else if (Symbol.symbolEinsSchlaegtSymbolZwei(spielerZweiSymbol, spielerEinsSymbol)) {
+            gewinner = spieler1;
+        } else if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler2), this.symbole.get(spieler1))) {
 
             // Spieler 2 gewinnt
-            ergebnis = rueckgabewertSpielerZweiGewinnt;
+            gewinner = spieler2;
         } else {
 
             // Unentschieden
-            ergebnis = rueckgabewertUnentschieden;
+            gewinner = null;
         }
 
-        //TODO REMOVE
-        System.out.println("Duell: " + spielerEinsSymbol + " vs. " + spielerZweiSymbol);
-
-        return ergebnis;
+        return gewinner;
     }
 }
