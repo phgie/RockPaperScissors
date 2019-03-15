@@ -1,5 +1,6 @@
 package rpsframework.turnier;
 
+import rpsframework.basis.Duell;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 

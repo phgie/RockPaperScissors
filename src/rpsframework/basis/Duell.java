@@ -1,7 +1,4 @@
-package rpsframework.turnier;
-
-import rpsframework.basis.SteinScherePapierSpieler;
-import rpsframework.basis.Symbol;
+package rpsframework.basis;
 
 import java.util.HashMap;
 import java.util.Iterator;
