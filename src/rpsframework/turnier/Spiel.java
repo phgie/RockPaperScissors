@@ -115,6 +115,17 @@ class Spiel {
         return ergebnis;
     }
 
+    /**
+     * Gibt das vom uebergebenen Spieler in der angegebenen Runde gespielte Symbol zurück.
+     * @param spieler Der Spieler, dessen gespieltes Symbol gesucht wird
+     * @param runde Die Runde, in der das Symbol gespielt wurde
+     * @return Das Symbol
+     */
+    public Symbol gibVonSpielerGespieltesSymbol(SteinScherePapierSpieler spieler, int runde) {
+
+        return this.duelle.get(runde - 1).gibSpielerSymbol(spieler);
+    }
+
     @Override
     public boolean equals(Object object) {
 
