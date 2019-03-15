@@ -75,11 +75,6 @@ class Spiel {
                speichern wir auch diese Punkte (unter dem "Spieler" null). */
             SteinScherePapierSpieler duellGewinner = aktuellesDuell.gibGewinner();
             this.punkte.put(duellGewinner, this.punkte.get(duellGewinner) + 1);
-
-            //TODO REMOVE
-            System.out.println("Duell: " + spieler1.getName() + " (" + aktuellesDuell.gibSpielerSymbol(spieler1)
-                    + ") vs. " + spieler2.getName() + " (" + aktuellesDuell.gibSpielerSymbol(spieler2) + ") -- Gewinner: "
-                    + duellGewinner);
         }
 
         //TODO REMOVE
@@ -95,6 +90,29 @@ class Spiel {
     public int gibSpielerPunkte(SteinScherePapierSpieler spieler) {
 
         return this.punkte.get(spieler);
+    }
+
+    /**
+     * Zählt, wie oft der übergebene Spieler das übergebene Symbol gewählt hat.
+     * @param spieler Der Spieler
+     * @param symbol Das Symbol
+     * @return Die Anzahl der Duelle dieses Spiels, in denen der Spieler das Symbol gespielt hat.
+     */
+    public int zaehleSymbolFuerSpieler(SteinScherePapierSpieler spieler, Symbol symbol) {
+
+        int ergebnis = 0;
+
+        // Gehe über alle bisher gespielten Duelle..
+        for (int i = 0; i < this.duelle.size(); i++) {
+
+            Duell aktuellesDuell = this.duelle.get(i);
+            if (aktuellesDuell.gibSpielerSymbol(spieler).equals(symbol)) {
+
+                ergebnis++;
+            }
+        }
+
+        return ergebnis;
     }
 
     @Override
