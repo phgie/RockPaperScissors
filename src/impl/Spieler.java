@@ -9,11 +9,11 @@ import rpsframework.basis.Symbol;
  * ... an einem Spiel gegen einen anderen Spieler teilnehmen
  * ....an einem Turnier teilnehmen und dabei gegen mehrere Spieler ein Spiel bestreiten
  */
-public class Spieler implements SteinScherePapierSpieler {
+public class Spieler extends SteinScherePapierSpieler {
 
-    @Override
-    public String getName() {
-        return "Dummfred";
+    public Spieler(int spielernummer) {
+
+        super(spielernummer);
     }
 
     @Override

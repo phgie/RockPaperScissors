@@ -18,8 +18,8 @@ class DuellTest {
     void setUp() {
 
         this.duell = new Duell();
-        this.spieler1 = new SpielerMock("SpielerMock 1");
-        this.spieler2 = new SpielerMock("SpielerMock 2");
+        this.spieler1 = new SpielerMock(1);
+        this.spieler2 = new SpielerMock(2);
     }
 
     @Test

@@ -14,16 +14,11 @@ import java.util.Scanner;
  * Dieser Spieler repräsentiert einen manuellen Spieler, welcher über die Kommandozeile
  * interaktiv gesteuert werden kann.
  */
-public class ManuellerSpieler implements SteinScherePapierSpieler {
+public class ManuellerSpieler extends SteinScherePapierSpieler {
 
-    /**
-     * Gibt den Namen dieses Spielers zurück
-     *
-     * @return Name des Spielers
-     */
-    @Override
-    public String getName() {
-        return "Du";
+    public ManuellerSpieler(int spielernummer) {
+
+        super(spielernummer);
     }
 
     /**

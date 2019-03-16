@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Ein einfacher Beispielgegner, der immer Stein, Schere und Papier abwechselnd in der selben Reihenfolge spielt.
  */
-public class SpielerZyklus implements SteinScherePapierSpieler {
+public class SpielerZyklus extends SteinScherePapierSpieler {
 
     /**
      * Liste mit Symbolen, welche abwechselnd gespielt werden sollen
@@ -20,14 +20,8 @@ public class SpielerZyklus implements SteinScherePapierSpieler {
      */
     private int runde;
 
-    /**
-     * Gibt den Namen dieses Spielers zurück
-     *
-     * @return Name des Spielers
-     */
-    @Override
-    public String getName() {
-        return "Frank Dreher";
+    public SpielerZyklus(int spielernummer) {
+        super(spielernummer);
     }
 
     /**

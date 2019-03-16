@@ -3,12 +3,10 @@ package rpsframework.beispiele;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
-public class ZufallSpieler implements SteinScherePapierSpieler {
+public class ZufallSpieler extends SteinScherePapierSpieler {
 
-    @Override
-    public String getName() {
-
-        return "ZufallSpieler";
+    public ZufallSpieler(int spielernummer) {
+        super(spielernummer);
     }
 
     @Override

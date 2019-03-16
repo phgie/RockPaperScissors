@@ -11,7 +11,7 @@ class SteinScherePapierSpielerTest {
 
     @Test
     void spieltImmerPapier_mitFestemSymbol() {
-        TestSpieler spieler = new TestSpieler(Symbol.PAPIER);
+        TestSpieler spieler = new TestSpieler(0, Symbol.PAPIER);
 
         // "IMMER" == 1000 Runden lang
         for (int i = 0; i < 1000; ++i)
@@ -20,7 +20,7 @@ class SteinScherePapierSpielerTest {
 
     @Test
     void spieltImmerPapier_mitAngriffsmuster() {
-        TestSpieler spieler = new TestSpieler(Angriffsmuster.zuErst(Symbol.PAPIER).undWiederVonVorne());
+        TestSpieler spieler = new TestSpieler(0, Angriffsmuster.zuErst(Symbol.PAPIER).undWiederVonVorne());
 
         // "IMMER" == 1000 Runden lang
         for (int i = 0; i < 1000; ++i)
@@ -29,7 +29,7 @@ class SteinScherePapierSpielerTest {
 
     @Test
     void spieltImmerAbwechselndSchereSteinPapier() {
-        TestSpieler spieler = new TestSpieler(Angriffsmuster
+        TestSpieler spieler = new TestSpieler(0, Angriffsmuster
                 .zuErst(Symbol.SCHERE)
                 .dann(Symbol.STEIN)
                 .dann(Symbol.PAPIER).undWiederVonVorne());
@@ -44,23 +44,20 @@ class SteinScherePapierSpielerTest {
                 assertEquals(Symbol.PAPIER, spieler.gibSymbol());
     }
 
-    public class TestSpieler implements SteinScherePapierSpieler {
+    public class TestSpieler extends SteinScherePapierSpieler {
         Symbol zuSpielendesSymbol;
 
         int rundenZaehler = 0;
         Angriffsmuster angriffsmuster;
 
-        TestSpieler(Symbol symbol) {
+        TestSpieler(int spielernummer, Symbol symbol) {
+            super(spielernummer);
             zuSpielendesSymbol = symbol;
         }
 
-        TestSpieler(Angriffsmuster angriffsmuster) {
+        TestSpieler(int spielernummer, Angriffsmuster angriffsmuster) {
+            super(spielernummer);
             this.angriffsmuster = angriffsmuster;
-        }
-
-        @Override
-        public String getName() {
-            return null;
         }
 
         @Override

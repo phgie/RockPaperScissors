@@ -7,7 +7,12 @@ import rpsframework.strategie.Angriffsmuster;
 /**
  * Ein einfacher Beispielgegner, der immer Stein, Schere und Papier abwechselnd in der selben Reihenfolge spielt.
  */
-public class SpielerMuster implements SteinScherePapierSpieler {
+public class SpielerMuster extends SteinScherePapierSpieler {
+
+    public SpielerMuster(int spielernummer) {
+
+        super(spielernummer);
+    }
 
     /**
      * Angriffsmuster
@@ -18,16 +23,6 @@ public class SpielerMuster implements SteinScherePapierSpieler {
      * Rundenzaehler
      */
     private int runde;
-
-    /**
-     * Gibt den Namen dieses Spielers zurück
-     *
-     * @return Name des Spielers
-     */
-    @Override
-    public String getName() {
-        return "Max Muster";
-    }
 
     /**
      * Gibt das aktuelle Symbol zurük. Nimmt dazu die aktuelle

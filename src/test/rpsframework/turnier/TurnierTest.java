@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import rpsframework.turnier.SpielerMock;
 import rpsframework.turnier.Turnier;
 
-public class TurnierTest {
+class TurnierTest {
 
     private Turnier turnier;
     private SpielerMock spieler1;
@@ -15,8 +15,8 @@ public class TurnierTest {
     void setUp() {
 
         this.turnier = new Turnier();
-        this.spieler1 = new SpielerMock("SpielerMock 1");
-        this.spieler2 = new SpielerMock("SpielerMock 2");
+        this.spieler1 = new SpielerMock(1);
+        this.spieler2 = new SpielerMock(2);
 
         this.turnier.fuegeTeilnehmerHinzu(this.spieler1);
         this.turnier.fuegeTeilnehmerHinzu(this.spieler2);

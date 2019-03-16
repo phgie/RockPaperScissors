@@ -6,17 +6,11 @@ import rpsframework.basis.Symbol;
 /**
  * Ein einfacher Beispielgegner, der immer Stein spielt
  */
-public class SpielerStein implements SteinScherePapierSpieler {
+public class SpielerStein extends SteinScherePapierSpieler {
 
-    /**
-     * Gibt den Namen dieses Spielers zurück
-     *
-     * @return Name des Spielers
-     */
-    @Override
-    public String getName() {
+    public SpielerStein(int spielernummer) {
 
-        return "Stefan Stein";
+        super(spielernummer);
     }
 
     /**

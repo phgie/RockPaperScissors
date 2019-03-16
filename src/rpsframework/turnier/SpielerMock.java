@@ -3,25 +3,18 @@ package rpsframework.turnier;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
-public class SpielerMock implements SteinScherePapierSpieler {
+public class SpielerMock extends SteinScherePapierSpieler {
 
     private String name;
     private Symbol symbol;
 
-    public SpielerMock(String name) {
-
-        this.name = name;
+    public SpielerMock(int spielernummer) {
+        super(spielernummer);
     }
 
     public void setSymbol(Symbol symbol) {
 
         this.symbol = symbol;
-    }
-
-    @Override
-    public String getName() {
-
-        return this.name;
     }
 
     @Override
