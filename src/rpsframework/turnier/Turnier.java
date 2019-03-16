@@ -1,5 +1,6 @@
 package rpsframework.turnier;
 
+import rpsframework.basis.Spiel;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 
@@ -95,12 +96,12 @@ public class Turnier {
     }
 
     /**
-     * Addiert die Häufigkeit eines Symbols für einen Spieler
+     * Zählt die Häufigkeit des übergebenen Symbols für einen Spieler
      * @param spieler Der Spieler, für den gezählt werden soll
      * @param symbol Das Symbol, welches für den Spieler gesucht werden soll
      * @return Die Anzahl, wie oft der Spieler das Symbol gewählt hat
      */
-    public int addiereSpielerSymbol(SteinScherePapierSpieler spieler, Symbol symbol) {
+    public int zaehleSymbolFuerSpieler(SteinScherePapierSpieler spieler, Symbol symbol) {
 
         int anzahlSymbole = 0;
 
@@ -113,6 +114,23 @@ public class Turnier {
         }
 
         return anzahlSymbole;
+    }
+
+    /**
+     * Zählt die Häufigkeit des übergebenen Symbols für alle Spieler.
+     * @param symbol Das Symbol, welches gezählt werden soll.
+     * @return Wie oft das Symbol gespielt wurde
+     */
+    public int zaehleSymbol(Symbol symbol) {
+
+        int anzahlSymbol = 0;
+
+        for (SteinScherePapierSpieler spieler : this.teilnehmer) {
+
+            anzahlSymbol += zaehleSymbolFuerSpieler(spieler, symbol);
+        }
+
+        return anzahlSymbol;
     }
 
 

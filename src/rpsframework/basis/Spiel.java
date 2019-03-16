@@ -1,8 +1,4 @@
-package rpsframework.turnier;
-
-import rpsframework.basis.Duell;
-import rpsframework.basis.SteinScherePapierSpieler;
-import rpsframework.basis.Symbol;
+package rpsframework.basis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +8,7 @@ import java.util.Objects;
  * Ein Spiel ist eine Begegnung zwischen zwei Spielern und läuft über eine vorgegebene Zahl von Runden. Jede Runde ist
  * ein Duell, dessen Ausgang abgefragt werden kann
  */
-class Spiel {
+public class Spiel {
 
     private SteinScherePapierSpieler spieler1;
     private SteinScherePapierSpieler spieler2;
@@ -32,7 +28,7 @@ class Spiel {
      * @param spieler2 Spieler 2
      * @param runden Die Anzahl der Duelle, die die beiden Spieler austragen sollen.
      */
-    Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
+    public Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
 
         this.spieler1 = spieler1;
         this.spieler2 = spieler2;
@@ -51,7 +47,7 @@ class Spiel {
     /**
      * Startet das Spiel und löst die einzelnen Begegnungen aus
      */
-    void starteSpiel() {
+    public void starteSpiel() {
 
         // Wir informieren die Spieler darüber, dass ein neues Spiel beginnt.
         spieler1.starteNeuesSpiel(this.runden);
@@ -103,9 +99,8 @@ class Spiel {
         int ergebnis = 0;
 
         // Gehe über alle bisher gespielten Duelle..
-        for (int i = 0; i < this.duelle.size(); i++) {
+        for (Duell aktuellesDuell : this.duelle) {
 
-            Duell aktuellesDuell = this.duelle.get(i);
             if (aktuellesDuell.gibSpielerSymbol(spieler).equals(symbol)) {
 
                 ergebnis++;

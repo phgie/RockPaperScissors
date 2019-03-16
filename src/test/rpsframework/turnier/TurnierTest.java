@@ -2,7 +2,6 @@ package test.rpsframework.turnier;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import rpsframework.turnier.SpielerMock;
 import rpsframework.turnier.Turnier;
 
 class TurnierTest {

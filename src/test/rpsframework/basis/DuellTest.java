@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 import rpsframework.basis.Duell;
-import rpsframework.turnier.SpielerMock;
+import test.rpsframework.turnier.SpielerMock;
 
 class DuellTest {
 
