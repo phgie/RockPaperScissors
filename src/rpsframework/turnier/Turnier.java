@@ -1,8 +1,10 @@
 package rpsframework.turnier;
 
 import rpsframework.basis.SteinScherePapierSpieler;
+import rpsframework.basis.Symbol;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Ein Turnier, bestehend aus mehreren Spielen mit jeweils mehreren Duellen
@@ -74,8 +76,8 @@ public class Turnier {
 
     /**
      * Addiert alle Punkte aller Spiele des übergebenen Spielers.
-     * @param spieler
-     * @return
+     * @param spieler Der Spieler, dessen Gesamtpunkte ermittelt werden sollen
+     * @return Alle Punkte aus allen Spielen, an denen der Spieler teilgenommen hat.
      */
     public int addiereSpielerPunkte(SteinScherePapierSpieler spieler) {
 
@@ -91,6 +93,29 @@ public class Turnier {
 
         return punkte;
     }
+
+    /**
+     * Addiert die Häufigkeit eines Symbols für einen Spieler
+     * @param spieler Der Spieler, für den gezählt werden soll
+     * @param symbol Das Symbol, welches für den Spieler gesucht werden soll
+     * @return Die Anzahl, wie oft der Spieler das Symbol gewählt hat
+     */
+    public int addiereSpielerSymbol(SteinScherePapierSpieler spieler, Symbol symbol) {
+
+        int anzahlSymbole = 0;
+
+        for (Spiel aktuellesSpiel: this.spiele) {
+
+            if (aktuellesSpiel.istTeilnehmer(spieler)) {
+
+                anzahlSymbole += aktuellesSpiel.zaehleSymbolFuerSpieler(spieler, symbol);
+            }
+        }
+
+        return anzahlSymbole;
+    }
+
+
 
     //TODO
     public SteinScherePapierSpieler starteAuswertung() {
