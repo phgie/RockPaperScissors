@@ -26,6 +26,6 @@ public class Main {
 
         turnier.starteTurnier();
 
-        System.out.println(turnier.addiereSpielerPunkte(spieler1));
+        System.out.println(turnier.zaehleSpielerPunkte(spieler1));
     }
 }

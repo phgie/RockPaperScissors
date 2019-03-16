@@ -47,6 +47,20 @@ public class Turnier {
     }
 
     /**
+     * Gibt die Anzahl der Teilnehmer dieses Turniers zurück.
+     * @return Die Anzahl der Teilnehmer
+     */
+    public int gibAnzahlSpieler() {
+
+        return this.teilnehmer.size();
+    }
+
+    public int gibAnzahlSpiele() {
+
+        return this.spiele.size();
+    }
+
+    /**
      * Setzt die Anzahl der Runden pro Spiel für das Turnier fest.
      * @param runden Die Rundenzahl
      */
@@ -80,7 +94,7 @@ public class Turnier {
      * @param spieler Der Spieler, dessen Gesamtpunkte ermittelt werden sollen
      * @return Alle Punkte aus allen Spielen, an denen der Spieler teilgenommen hat.
      */
-    public int addiereSpielerPunkte(SteinScherePapierSpieler spieler) {
+    public int zaehleSpielerPunkte(SteinScherePapierSpieler spieler) {
 
         int punkte = 0;
 

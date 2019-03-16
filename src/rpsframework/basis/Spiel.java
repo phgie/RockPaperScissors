@@ -59,9 +59,11 @@ public class Spiel {
             Symbol aktuellesSymbolSpieler1 = spieler1.gibSymbol();
             Symbol aktuellesSymbolSpieler2 = spieler2.gibSymbol();
 
+            // Neues Duell für die beiden Spieler erstellen
             Duell aktuellesDuell = new Duell();
             aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler1, aktuellesSymbolSpieler1);
             aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler2, aktuellesSymbolSpieler2);
+            this.duelle.add(aktuellesDuell);
 
             // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
             spieler1.nimmGegnerSymbol(aktuellesSymbolSpieler2, i + 1);
@@ -72,10 +74,6 @@ public class Spiel {
             SteinScherePapierSpieler duellGewinner = aktuellesDuell.gibGewinner();
             this.punkte.put(duellGewinner, this.punkte.get(duellGewinner) + 1);
         }
-
-        //TODO REMOVE
-        System.out.println("Spiel: " + spieler1.getName() + " vs. " + spieler2.getName() + ": "
-                + gibSpielerPunkte(spieler1) + ":" + gibSpielerPunkte(spieler2) + " (" + gibSpielerPunkte(null) + " Unentschieden)");
     }
 
     /**
