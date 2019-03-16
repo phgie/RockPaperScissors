@@ -126,6 +126,11 @@ class Spiel {
         return this.duelle.get(runde - 1).gibSpielerSymbol(spieler);
     }
 
+    public boolean istTeilnehmer(SteinScherePapierSpieler spieler) {
+
+        return this.spieler1.equals(spieler) || this.spieler2.equals(spieler);
+    }
+
     @Override
     public boolean equals(Object object) {
 

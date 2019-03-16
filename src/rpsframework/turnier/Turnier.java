@@ -72,6 +72,26 @@ public class Turnier {
         }
     }
 
+    /**
+     * Addiert alle Punkte aller Spiele des übergebenen Spielers.
+     * @param spieler
+     * @return
+     */
+    public int addiereSpielerPunkte(SteinScherePapierSpieler spieler) {
+
+        int punkte = 0;
+
+        for (Spiel aktuellesSpiel : this.spiele) {
+
+            if (aktuellesSpiel.istTeilnehmer(spieler)) {
+
+                punkte += aktuellesSpiel.gibSpielerPunkte(spieler);
+            }
+        }
+
+        return punkte;
+    }
+
     //TODO
     public SteinScherePapierSpieler starteAuswertung() {
 
