@@ -8,12 +8,9 @@ public class SpielerMock extends SteinScherePapierSpieler {
     private String name;
     private Symbol symbol;
 
-    public SpielerMock(int spielernummer) {
+    public SpielerMock(int spielernummer, Symbol symbol) {
+
         super(spielernummer);
-    }
-
-    public void setSymbol(Symbol symbol) {
-
         this.symbol = symbol;
     }
 
