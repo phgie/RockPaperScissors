@@ -128,9 +128,12 @@ public class Turnier {
     }
 
     /**
-     * Addiert alle Punkte aller Spiele des übergebenen Spielers.
-     * @param spieler Der Spieler, dessen Gesamtpunkte ermittelt werden sollen
-     * @return Alle Punkte aus allen Spielen, an denen der Spieler teilgenommen hat.
+     * Addiert alle Punkte aller Spiele des übergebenen Spielers bzw. die Anzahl der Unentschieden, falls der
+     * übergebene Spieler "null" ist.
+     * @param spieler Der Spieler, dessen Gesamtpunkte ermittelt werden sollen oder "null" falls die Anzahl der
+     *                Unentschieden ermittelt werden soll.
+     * @return Alle Punkte aus allen Spielen, an denen der Spieler teilgenommen hat bzw. alle Unentschieden aus
+     * allen Spielen, falls der übergebene Spieler "null" ist.
      */
     public int zaehleSpielerPunkte(SteinScherePapierSpieler spieler) {
 
@@ -138,7 +141,7 @@ public class Turnier {
 
         for (Spiel aktuellesSpiel : this.spiele) {
 
-            if (aktuellesSpiel.istTeilnehmer(spieler)) {
+            if (aktuellesSpiel.istTeilnehmer(spieler) || spieler == null) {
 
                 punkte += aktuellesSpiel.gibSpielerPunkte(spieler);
             }
