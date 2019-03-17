@@ -1,7 +1,7 @@
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.beispiele.SpielerStein;
-import rpsframework.beispiele.SpielerZyklus;
 import rpsframework.beispiele.SpielerZufall;
+import rpsframework.beispiele.SpielerZyklus;
 import rpsframework.turnier.Turnier;
 
 public class Main {

@@ -9,9 +9,9 @@ package rpsframework.basis;
  */
 public abstract class SteinScherePapierSpieler {
 
-    private String name;
+    private final String name;
 
-    public SteinScherePapierSpieler(int spielernummer) {
+    protected SteinScherePapierSpieler(int spielernummer) {
 
         this.name = "Spieler " + spielernummer + " (" + this.getClass().getSimpleName() + ")";
     }

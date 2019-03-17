@@ -41,7 +41,7 @@ public class Turnier {
      */
     public void fuegeTeilnehmerHinzu(SteinScherePapierSpieler turnierTeilnehmer) {
 
-        if (!this.teilnehmer.contains(turnierTeilnehmer)) {
+        if (turnierTeilnehmer != null && !this.teilnehmer.contains(turnierTeilnehmer)) {
 
             this.teilnehmer.add(turnierTeilnehmer);
         }
@@ -113,7 +113,9 @@ public class Turnier {
             //Für alle weiteren verbleibenden Teilnehmer...
             for (int j = i + 1; j < teilnehmer.size(); j++) {
 
-                Spiel spiel = new Spiel(teilnehmer.get(i), teilnehmer.get(j), this.rundenProSpiel);
+                Spiel spiel = new Spiel(this.rundenProSpiel);
+                spiel.fuegeSpielerHinzu(teilnehmer.get(i));
+                spiel.fuegeSpielerHinzu(teilnehmer.get(j));
 
                 // Gibt es bereits ein Spiel zwischen beiden Teilnehmern?
                 if (!this.spiele.contains(spiel)) {

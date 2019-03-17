@@ -42,9 +42,13 @@ class TurnierTest {
 
         assertEquals(6, this.turnier.gibAnzahlSpieler());
 
-        this.turnier.fuegeTeilnehmerHinzu(new SpielerMock(1, Symbol.STEIN));
+        this.turnier.fuegeTeilnehmerHinzu(this.spieler.get(0));
 
         assertEquals(6, this.turnier.gibAnzahlSpieler());
+
+        this.turnier.fuegeTeilnehmerHinzu(new SpielerMock(7, Symbol.STEIN));
+
+        assertEquals(7, this.turnier.gibAnzahlSpieler());
     }
 
     @Test

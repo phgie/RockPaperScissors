@@ -21,6 +21,23 @@ class DuellTest {
     }
 
     @Test
+    void testGibGewinner() {
+
+        this.spieler1 = new SpielerMock(1, Symbol.STEIN);
+        this.spieler2 = new SpielerMock(2, Symbol.PAPIER);
+
+        Assertions.assertNull(duell.gibGewinner());
+
+        duell.fuegeSpielerSymbolHinzu(this.spieler1, spieler1.gibSymbol());
+
+        Assertions.assertEquals(this.spieler1, duell.gibGewinner());
+
+        duell.fuegeSpielerSymbolHinzu(this.spieler2, spieler2.gibSymbol());
+
+        Assertions.assertEquals(this.spieler2, duell.gibGewinner());
+    }
+
+    @Test
     void papierBesiegtStein() {
 
         this.spieler1 = new SpielerMock(1, Symbol.STEIN);

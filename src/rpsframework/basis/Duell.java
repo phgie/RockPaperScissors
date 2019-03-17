@@ -26,7 +26,10 @@ public class Duell {
      */
     public void fuegeSpielerSymbolHinzu(SteinScherePapierSpieler spieler, Symbol symbol) {
 
-        this.symbole.put(spieler, symbol);
+        if (spieler != null && this.symbole.size() < 2) {
+
+            this.symbole.put(spieler, symbol);
+        }
     }
 
     /**
@@ -47,23 +50,33 @@ public class Duell {
 
         SteinScherePapierSpieler gewinner;
 
-        // Wir müssen zuerst beide Spieler kennen..
-        Iterator<SteinScherePapierSpieler> spielerIter = this.symbole.keySet().iterator();
-        SteinScherePapierSpieler spieler1 = spielerIter.next();
-        SteinScherePapierSpieler spieler2 = spielerIter.next();
+        if (this.symbole.size() == 0) {
 
-        if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler1), this.symbole.get(spieler2))) {
+            gewinner = null;
+        } else if (this.symbole.size() == 1) {
 
-            // Spieler 1 gewinnt
-            gewinner = spieler1;
-        } else if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler2), this.symbole.get(spieler1))) {
-
-            // Spieler 2 gewinnt
-            gewinner = spieler2;
+            // Da es nur einen Spieler im Duell gibt, können wir direkt diesen als Gewinner ausgeben
+            gewinner = this.symbole.keySet().iterator().next();
         } else {
 
-            // Unentschieden
-            gewinner = null;
+            // Wir müssen zuerst beide Spieler kennen..
+            Iterator<SteinScherePapierSpieler> spielerIter = this.symbole.keySet().iterator();
+            SteinScherePapierSpieler spieler1 = spielerIter.next();
+            SteinScherePapierSpieler spieler2 = spielerIter.next();
+
+            if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler1), this.symbole.get(spieler2))) {
+
+                // Spieler 1 gewinnt
+                gewinner = spieler1;
+            } else if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler2), this.symbole.get(spieler1))) {
+
+                // Spieler 2 gewinnt
+                gewinner = spieler2;
+            } else {
+
+                // Unentschieden
+                gewinner = null;
+            }
         }
 
         return gewinner;

@@ -16,24 +16,31 @@ public class Spiel {
     /* Speichert die Punkte der beiden Spieler und die Anzahl der Unentschieden */
     private HashMap<SteinScherePapierSpieler, Integer> punkte;
 
-
     /**
      * Erzeugt ein neues Spiel. Das Spiel kann anschließend gestartet und nach seinem Ergebnis gefragt werden.
-     * @param spieler1 Spieler 1
-     * @param spieler2 Spieler 2
      * @param runden Die Anzahl der Duelle, die die beiden Spieler austragen sollen.
      */
-    public Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
+    public Spiel(int runden) {
 
         this.runden = runden;
 
         this.duelle = new ArrayList<>();
         this.punkte = new HashMap<>();
 
-        // Die Punktzahlen der Spieler auf 0 setzen. "null" speichert die Punkte für Unentschieden.
-        this.punkte.put(spieler1, 0);
-        this.punkte.put(spieler2, 0);
+        // "null" speichert die Punkte für Unentschieden.
         this.punkte.put(null, 0);
+    }
+
+    /**
+     * Fügt einen einzelnen Spieler dem Spiel hinzu, falls dieser noch nicht Teilnehmer des Spiels ist.
+     * @param spieler Ein SteinScherePapierSpieler
+     */
+    public void fuegeSpielerHinzu(SteinScherePapierSpieler spieler) {
+
+        if (spieler != null && !this.punkte.containsKey(spieler)) {
+
+            this.punkte.put(spieler, 0);
+        }
     }
 
     /**
@@ -41,41 +48,46 @@ public class Spiel {
      */
     public void starteSpiel() {
 
-        // Wir lassen uns die Spieler aus der Punktetafel geben und entfernen den "Spieler" für Unentschieden
-        Set<SteinScherePapierSpieler> spielerSet = new HashSet<>(this.punkte.keySet());
-        spielerSet.remove(null);
+        // Wir starten das Spiel nur, wenn genau 2 Teilnehmer vorhanden sind (der Teilnehmer "null" ist
+        // immer vorhanden) und wenn noch Runden zu spielen sind
+        if (this.punkte.size() == 3 && duelle.size() < runden) {
 
-        // Jetzt lassen wir uns die übrig bebliebenen Spieler ausgeben
-        Iterator<SteinScherePapierSpieler> spielerIterator = spielerSet.iterator();
+            // Wir lassen uns die Spieler aus der Punktetafel geben und entfernen den "Spieler" für Unentschieden
+            Set<SteinScherePapierSpieler> spielerSet = new HashSet<>(this.punkte.keySet());
+            spielerSet.remove(null);
 
-        // Wir wissen, dass es genau noch zwei Spieler gibt
-        SteinScherePapierSpieler spieler1 = spielerIterator.next();
-        SteinScherePapierSpieler spieler2 = spielerIterator.next();
+            // Jetzt lassen wir uns die übrig bebliebenen Spieler ausgeben
+            Iterator<SteinScherePapierSpieler> spielerIterator = spielerSet.iterator();
 
-        // Wir informieren die Spieler darüber, dass ein neues Spiel beginnt.
-        spieler1.starteNeuesSpiel(this.runden);
-        spieler2.starteNeuesSpiel(this.runden);
+            // Wir wissen, dass es genau noch zwei Spieler gibt
+            SteinScherePapierSpieler spieler1 = spielerIterator.next();
+            SteinScherePapierSpieler spieler2 = spielerIterator.next();
 
-        //Für jede Runde bis zur letzten ...
-        for (int i = 0; i < this.runden; i++) {
+            // Wir informieren die Spieler darüber, dass ein neues Spiel beginnt.
+            spieler1.starteNeuesSpiel(this.runden);
+            spieler2.starteNeuesSpiel(this.runden);
 
-            Symbol aktuellesSymbolSpieler1 = spieler1.gibSymbol();
-            Symbol aktuellesSymbolSpieler2 = spieler2.gibSymbol();
+            // Für jede Runde angefangen bei der letzten, die gespielt wurde bis zur letzten geplanten Runde...
+            for (int i = duelle.size(); i < this.runden; i++) {
 
-            // Neues Duell für die beiden Spieler erstellen
-            Duell aktuellesDuell = new Duell();
-            aktuellesDuell.fuegeSpielerSymbolHinzu(spieler1, aktuellesSymbolSpieler1);
-            aktuellesDuell.fuegeSpielerSymbolHinzu(spieler2, aktuellesSymbolSpieler2);
-            this.duelle.add(aktuellesDuell);
+                Symbol aktuellesSymbolSpieler1 = spieler1.gibSymbol();
+                Symbol aktuellesSymbolSpieler2 = spieler2.gibSymbol();
 
-            // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
-            spieler1.nimmGegnerSymbol(aktuellesSymbolSpieler2, i + 1);
-            spieler2.nimmGegnerSymbol(aktuellesSymbolSpieler1, i + 1);
+                // Neues Duell für die beiden Spieler erstellen
+                Duell aktuellesDuell = new Duell();
+                aktuellesDuell.fuegeSpielerSymbolHinzu(spieler1, aktuellesSymbolSpieler1);
+                aktuellesDuell.fuegeSpielerSymbolHinzu(spieler2, aktuellesSymbolSpieler2);
+                this.duelle.add(aktuellesDuell);
+
+                // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
+                spieler1.nimmGegnerSymbol(aktuellesSymbolSpieler2, i + 1);
+                spieler2.nimmGegnerSymbol(aktuellesSymbolSpieler1, i + 1);
 
             /* Wir holen uns den Gewinner des Duells und erhöhen seinen Punktestand. Sollte das Duell unentschieden sein,
                speichern wir auch diese Punkte (unter dem "Spieler" null). */
-            SteinScherePapierSpieler duellGewinner = aktuellesDuell.gibGewinner();
-            this.punkte.put(duellGewinner, this.punkte.get(duellGewinner) + 1);
+                SteinScherePapierSpieler duellGewinner = aktuellesDuell.gibGewinner();
+                this.punkte.put(duellGewinner, this.punkte.get(duellGewinner) + 1);
+            }
         }
     }
 
@@ -86,7 +98,14 @@ public class Spiel {
      */
     public int gibSpielerPunkte(SteinScherePapierSpieler spieler) {
 
-        return this.punkte.get(spieler);
+        int ergebnis = 0;
+
+        if (this.punkte.containsKey(spieler)) {
+
+            ergebnis = this.punkte.get(spieler);
+        }
+
+        return ergebnis;
     }
 
     /**
@@ -99,12 +118,16 @@ public class Spiel {
 
         int ergebnis = 0;
 
-        // Gehe über alle bisher gespielten Duelle..
-        for (Duell aktuellesDuell : this.duelle) {
+        if (spieler != null) {
 
-            if (aktuellesDuell.gibSpielerSymbol(spieler).equals(symbol)) {
+            // Gehe über alle bisher gespielten Duelle..
+            for (Duell aktuellesDuell : this.duelle) {
 
-                ergebnis++;
+                if ((aktuellesDuell.gibSpielerSymbol(spieler) == null && symbol == null)
+                    || aktuellesDuell.gibSpielerSymbol(spieler).equals(symbol)) {
+
+                    ergebnis++;
+                }
             }
         }
 
@@ -112,14 +135,22 @@ public class Spiel {
     }
 
     /**
-     * Gibt das vom uebergebenen Spieler in der angegebenen Runde gespielte Symbol zurück.
+     * Gibt das vom uebergebenen Spieler in der angegebenen Runde gespielte Symbol zurück, falls die Runde bereits
+     * gespielt wurde. Falls nicht wird kein Symbol zurückgegeben
      * @param spieler Der Spieler, dessen gespieltes Symbol gesucht wird
      * @param runde Die Runde, in der das Symbol gespielt wurde
-     * @return Das Symbol
+     * @return Das Symbol oder null, falls die Runde noch nicht gespielt wurde oder der Spieler kein Symbol gespielt hat.
      */
     public Symbol gibVonSpielerGespieltesSymbol(SteinScherePapierSpieler spieler, int runde) {
 
-        return this.duelle.get(runde - 1).gibSpielerSymbol(spieler);
+        Symbol gespieltesSymbol = null;
+
+        if (this.duelle.size() >= runde) {
+
+            gespieltesSymbol = this.duelle.get(runde - 1).gibSpielerSymbol(spieler);
+        }
+
+        return gespieltesSymbol;
     }
 
     /**
@@ -129,7 +160,7 @@ public class Spiel {
      */
     public boolean istTeilnehmer(SteinScherePapierSpieler spieler) {
 
-        return this.punkte.containsKey(spieler);
+        return spieler != null && this.punkte.containsKey(spieler);
     }
 
     @Override
