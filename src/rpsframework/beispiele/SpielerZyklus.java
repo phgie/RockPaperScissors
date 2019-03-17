@@ -37,8 +37,9 @@ public class SpielerZyklus extends SteinScherePapierSpieler {
         // Runde hochzählen
         runde = runde + 1;
 
-        // Naechstes Symbol zurueckgeben
-        return  symbolListe.get(runde%3);
+        // Naechstes Symbol zurueckgeben. Modulo (%) ist der Restwertoperator. Er gibt nicht das Ergebnis einer
+        // Division, sondern den Rest zurück. Beispiel: 20 / 3 = 6 (gerundet, mit Rest 2), während 20 % 6 = 2.
+        return  symbolListe.get(runde % 3);
     }
 
     /**
@@ -58,11 +59,5 @@ public class SpielerZyklus extends SteinScherePapierSpieler {
         symbolListe.add(Symbol.SCHERE);
         symbolListe.add(Symbol.STEIN);
         symbolListe.add(Symbol.PAPIER);
-    }
-
-    @Override
-    public void nimmGegnerSymbol(Symbol symbol, int runde) {
-
-        // Wird nicht verwendet
     }
 }

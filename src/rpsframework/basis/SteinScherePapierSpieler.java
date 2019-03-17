@@ -17,16 +17,7 @@ public abstract class SteinScherePapierSpieler {
     }
 
     /**
-     * Gibt den Namen des Spielers zurück.
-     * @return Der Name des Spielers als String
-     */
-    public final String getName() {
-
-        return this.name;
-    }
-
-    /**
-     * Fragt den Spieler nach dem nächsten Symbol, welches er spielen möchte.
+     * Fragt den Spieler nach dem nächsten Symbol, welches er spielen möchte. Diese Methode muss überschrieben werden.
      * @return Das nächste Symbol
      */
     public abstract Symbol gibSymbol();
@@ -38,7 +29,7 @@ public abstract class SteinScherePapierSpieler {
      */
     public void starteNeuesSpiel(int runden) {
 
-        // Implementierung erfolgt in Unterklasse
+        // Optional: Implementierung erfolgt in Unterklasse
     }
 
     /**
@@ -48,7 +39,16 @@ public abstract class SteinScherePapierSpieler {
      */
     public void nimmGegnerSymbol(Symbol symbol, int runde) {
 
-        // Implementierung erfolgt in Unterklasse
+        // Optional: Implementierung erfolgt in Unterklasse
+    }
+
+    /**
+     * Gibt den Namen des Spielers zurück.
+     * @return Der Name des Spielers als String
+     */
+    public final String getName() {
+
+        return this.name;
     }
 
     /**

@@ -58,21 +58,4 @@ public class ManuellerSpieler extends SteinScherePapierSpieler {
 
         return auswahl;
     }
-
-    /**
-     * Bereite ein neues Spiel vor. Keine Initialisierung notwendig
-     * da interaktiv.
-     *
-     * @param runden Die Anzahl der Runden für das neue Spiel
-     */
-    @Override
-    public void starteNeuesSpiel(int runden) {
-        System.out.println("Ein neue Spiel beginnt!");
-    }
-
-    @Override
-    public void nimmGegnerSymbol(Symbol symbol, int runde) {
-
-        //wird nicht verwendet
-    }
 }

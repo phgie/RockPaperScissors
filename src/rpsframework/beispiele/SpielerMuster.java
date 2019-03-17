@@ -61,10 +61,4 @@ public class SpielerMuster extends SteinScherePapierSpieler {
                 .dann(Symbol.PAPIER).mehrmals(4)
                 .undWiederVonVorne();
     }
-
-    @Override
-    public void nimmGegnerSymbol(Symbol symbol, int runde) {
-
-        // Wird nicht verwendet
-    }
 }

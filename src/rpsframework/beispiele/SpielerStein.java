@@ -24,16 +24,4 @@ public class SpielerStein extends SteinScherePapierSpieler {
         // Spielt immer Stein
         return Symbol.STEIN;
     }
-
-    @Override
-    public void starteNeuesSpiel(int runden) {
-
-        // Wird nicht verwendet
-    }
-
-    @Override
-    public void nimmGegnerSymbol(Symbol symbol, int runde) {
-
-        // Wird nicht verwendet
-    }
 }
