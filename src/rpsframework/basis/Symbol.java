@@ -19,9 +19,9 @@ public enum Symbol {
     public static boolean symbolEinsSchlaegtSymbolZwei(Symbol symbol1, Symbol symbol2) {
 
         // Wir prüfen nur die Gewinnfälle für das erste Symbol ab und unterscheiden nicht zwischen Unentschieden und Sieg für Symbol 2.
-        return (symbol1 != null && symbol2 != null)
-                    && ((symbol1.equals(STEIN) && symbol2.equals(SCHERE))
-                        || (symbol1.equals(PAPIER) && symbol2.equals(STEIN))
-                        || (symbol1.equals(SCHERE) && symbol2.equals(PAPIER)));
+        return symbol1 != null
+                    && (symbol1.equals(STEIN) && (symbol2 == null || symbol2.equals(SCHERE))
+                        || (symbol1.equals(PAPIER) && (symbol2 == null || symbol2.equals(STEIN)))
+                        || (symbol1.equals(SCHERE) && (symbol2 == null || symbol2.equals(PAPIER))));
     }
 }

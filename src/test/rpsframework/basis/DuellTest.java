@@ -1,12 +1,13 @@
 package test.rpsframework.basis;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import rpsframework.basis.Duell;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 import test.rpsframework.mocks.SpielerMock;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DuellTest {
 
@@ -21,20 +22,55 @@ class DuellTest {
     }
 
     @Test
+    void testFuegeSpielerHinzu() {
+
+        this.spieler1 = new SpielerMock(1, Symbol.SCHERE);
+        this.spieler2 = new SpielerMock(2, Symbol.PAPIER);
+
+        assertNull(this.duell.gibSpielerSymbol(spieler1));
+        assertNull(this.duell.gibGewinner());
+
+        this.duell.fuegeSpielerSymbolHinzu(null, null);
+
+        assertNull(this.duell.gibSpielerSymbol(spieler1));
+        assertNull(this.duell.gibGewinner());
+
+        this.duell.fuegeSpielerSymbolHinzu(null, Symbol.PAPIER);
+
+        assertNull(this.duell.gibSpielerSymbol(spieler1));
+        assertNull(this.duell.gibGewinner());
+
+        this.duell.fuegeSpielerSymbolHinzu(this.spieler1, null);
+
+        assertNull(this.duell.gibSpielerSymbol(spieler1));
+        assertEquals(this.spieler1, this.duell.gibGewinner());
+
+        this.duell.fuegeSpielerSymbolHinzu(this.spieler2, this.spieler2.gibSymbol());
+
+        assertEquals(this.spieler2.gibSymbol(), this.duell.gibSpielerSymbol(spieler2));
+        assertEquals(this.spieler2, this.duell.gibGewinner());
+
+        this.duell.fuegeSpielerSymbolHinzu(this.spieler1, this.spieler1.gibSymbol());
+
+        assertNull(this.duell.gibSpielerSymbol(spieler1));
+        assertEquals(this.spieler2, this.duell.gibGewinner());
+    }
+
+    @Test
     void testGibGewinner() {
 
         this.spieler1 = new SpielerMock(1, Symbol.STEIN);
         this.spieler2 = new SpielerMock(2, Symbol.PAPIER);
 
-        Assertions.assertNull(duell.gibGewinner());
+        assertNull(duell.gibGewinner());
 
         duell.fuegeSpielerSymbolHinzu(this.spieler1, spieler1.gibSymbol());
 
-        Assertions.assertEquals(this.spieler1, duell.gibGewinner());
+        assertEquals(this.spieler1, duell.gibGewinner());
 
         duell.fuegeSpielerSymbolHinzu(this.spieler2, spieler2.gibSymbol());
 
-        Assertions.assertEquals(this.spieler2, duell.gibGewinner());
+        assertEquals(this.spieler2, duell.gibGewinner());
     }
 
     @Test
@@ -46,9 +82,9 @@ class DuellTest {
         duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
         duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
-        Assertions.assertEquals(duell.gibGewinner(), spieler2);
-        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
-        Assertions.assertNotEquals(duell.gibGewinner(), null);
+        assertEquals(duell.gibGewinner(), spieler2);
+        assertNotEquals(duell.gibGewinner(), spieler1);
+        assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
@@ -60,9 +96,9 @@ class DuellTest {
         duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
         duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
-        Assertions.assertEquals(duell.gibGewinner(), spieler1);
-        Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
-        Assertions.assertNotEquals(duell.gibGewinner(), null);
+        assertEquals(duell.gibGewinner(), spieler1);
+        assertNotEquals(duell.gibGewinner(), spieler2);
+        assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
@@ -74,9 +110,9 @@ class DuellTest {
         duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
         duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
-        Assertions.assertEquals(duell.gibGewinner(), spieler2);
-        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
-        Assertions.assertNotEquals(duell.gibGewinner(), null);
+        assertEquals(duell.gibGewinner(), spieler2);
+        assertNotEquals(duell.gibGewinner(), spieler1);
+        assertNotEquals(duell.gibGewinner(), null);
     }
 
     @Test
@@ -88,8 +124,8 @@ class DuellTest {
         duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
         duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
-        Assertions.assertNull(duell.gibGewinner());
-        Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
-        Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
+        assertNull(duell.gibGewinner());
+        assertNotEquals(duell.gibGewinner(), spieler2);
+        assertNotEquals(duell.gibGewinner(), spieler1);
     }
 }

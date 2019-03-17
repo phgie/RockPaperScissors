@@ -26,7 +26,7 @@ public class Duell {
      */
     public void fuegeSpielerSymbolHinzu(SteinScherePapierSpieler spieler, Symbol symbol) {
 
-        if (spieler != null && this.symbole.size() < 2) {
+        if (spieler != null && this.symbole.size() < 2 && !this.symbole.containsKey(spieler)) {
 
             this.symbole.put(spieler, symbol);
         }
