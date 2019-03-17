@@ -55,6 +55,10 @@ public class Turnier {
         return this.teilnehmer.size();
     }
 
+    /**
+     * Gibt die Anzahl der gespielten Spiele zurück.
+     * @return Die Anzahl der Spiele, die bisher gespielt wurden.
+     */
     public int gibAnzahlSpiele() {
 
         return this.spiele.size();

@@ -1,17 +1,12 @@
 package rpsframework.basis;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Ein Spiel ist eine Begegnung zwischen zwei Spielern und läuft über eine vorgegebene Zahl von Runden. Jede Runde ist
  * ein Duell, dessen Ausgang abgefragt werden kann
  */
 public class Spiel {
-
-    private SteinScherePapierSpieler spieler1;
-    private SteinScherePapierSpieler spieler2;
 
     private int runden;
 
@@ -30,9 +25,6 @@ public class Spiel {
      */
     public Spiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2, int runden) {
 
-        this.spieler1 = spieler1;
-        this.spieler2 = spieler2;
-
         this.runden = runden;
 
         this.duelle = new ArrayList<>();
@@ -49,6 +41,17 @@ public class Spiel {
      */
     public void starteSpiel() {
 
+        // Wir lassen uns die Spieler aus der Punktetafel geben und entfernen den "Spieler" für Unentschieden
+        Set<SteinScherePapierSpieler> spielerSet = new HashSet<>(this.punkte.keySet());
+        spielerSet.remove(null);
+
+        // Jetzt lassen wir uns die übrig bebliebenen Spieler ausgeben
+        Iterator<SteinScherePapierSpieler> spielerIterator = spielerSet.iterator();
+
+        // Wir wissen, dass es genau noch zwei Spieler gibt
+        SteinScherePapierSpieler spieler1 = spielerIterator.next();
+        SteinScherePapierSpieler spieler2 = spielerIterator.next();
+
         // Wir informieren die Spieler darüber, dass ein neues Spiel beginnt.
         spieler1.starteNeuesSpiel(this.runden);
         spieler2.starteNeuesSpiel(this.runden);
@@ -61,8 +64,8 @@ public class Spiel {
 
             // Neues Duell für die beiden Spieler erstellen
             Duell aktuellesDuell = new Duell();
-            aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler1, aktuellesSymbolSpieler1);
-            aktuellesDuell.fuegeSpielerSymbolHinzu(this.spieler2, aktuellesSymbolSpieler2);
+            aktuellesDuell.fuegeSpielerSymbolHinzu(spieler1, aktuellesSymbolSpieler1);
+            aktuellesDuell.fuegeSpielerSymbolHinzu(spieler2, aktuellesSymbolSpieler2);
             this.duelle.add(aktuellesDuell);
 
             // Wir müssen den Spielern die Informationen des Duells in der aktuellen Runde mitteilen
@@ -126,7 +129,7 @@ public class Spiel {
      */
     public boolean istTeilnehmer(SteinScherePapierSpieler spieler) {
 
-        return this.spieler1.equals(spieler) || this.spieler2.equals(spieler);
+        return this.punkte.containsKey(spieler);
     }
 
     @Override
@@ -139,7 +142,7 @@ public class Spiel {
             Spiel anderesSpiel = (Spiel) object;
 
             // Beide Spiele sind gleich, wenn die Spieler identisch sind.
-            istGleich = anderesSpiel.istTeilnehmer(this.spieler1) && anderesSpiel.istTeilnehmer(this.spieler2);
+            istGleich = this.punkte.keySet().equals(anderesSpiel.punkte.keySet());
         }
 
         return istGleich;
@@ -148,6 +151,6 @@ public class Spiel {
     @Override
     public int hashCode() {
 
-        return Objects.hash(spieler1, spieler2);
+        return Objects.hash(this.punkte.keySet());
     }
 }

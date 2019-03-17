@@ -13,7 +13,7 @@ public abstract class SteinScherePapierSpieler {
 
     public SteinScherePapierSpieler(int spielernummer) {
 
-        this.name = "Spieler " + spielernummer + ": " + this.getClass().getSimpleName();
+        this.name = "Spieler " + spielernummer + " (" + this.getClass().getSimpleName() + ")";
     }
 
     /**

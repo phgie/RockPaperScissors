@@ -1,4 +1,4 @@
-package impl;
+package rpsframework.beispiele;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
@@ -14,9 +14,9 @@ import java.util.Scanner;
  * Dieser Spieler repräsentiert einen manuellen Spieler, welcher über die Kommandozeile
  * interaktiv gesteuert werden kann.
  */
-public class ManuellerSpieler extends SteinScherePapierSpieler {
+public class SpielerManuelleEingabe extends SteinScherePapierSpieler {
 
-    public ManuellerSpieler(int spielernummer) {
+    public SpielerManuelleEingabe(int spielernummer) {
 
         super(spielernummer);
     }

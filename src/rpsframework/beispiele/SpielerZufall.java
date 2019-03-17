@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 /**
  * Ein Beispielgegner, der ein zufälliges Symbol spielt.
  */
-public class ZufallSpieler extends SteinScherePapierSpieler {
+public class SpielerZufall extends SteinScherePapierSpieler {
 
     /* Java bietet einen Standard-Mechanismus, um zufällige Werte zu erzeugen. */
     private final SecureRandom randomMechanism = new SecureRandom();
@@ -17,7 +17,7 @@ public class ZufallSpieler extends SteinScherePapierSpieler {
      * Erstellt einen neuen Zufallspieler
      * @param spielernummer Die notwendige Spielernummer
      */
-    public ZufallSpieler(int spielernummer) {
+    public SpielerZufall(int spielernummer) {
 
         // Wir verwenden den Konstruktor der übergeordneten Klasse
         super(spielernummer);
