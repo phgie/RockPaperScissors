@@ -89,6 +89,18 @@ class TurnierTest {
     }
 
     @Test
+    void testeEntferneTeilnehmer() {
+
+        assertEquals(6, this.turnier.gibAnzahlSpieler());
+        assertEquals(15, this.turnier.gibAnzahlSpiele());
+
+        this.turnier.entferneTeilnehmer(this.spieler.get(0));
+
+        assertEquals(5, this.turnier.gibAnzahlSpieler());
+        assertEquals(10, this.turnier.gibAnzahlSpiele());
+    }
+
+    @Test
     void keinGewinnerWennAlleSpielerDieselbePunktzahlHaben() {
 
         //TODO

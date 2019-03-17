@@ -6,6 +6,7 @@ import rpsframework.basis.Symbol;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Ein Turnier, bestehend aus mehreren Spielen mit jeweils mehreren Duellen
@@ -43,6 +44,33 @@ public class Turnier {
         if (!this.teilnehmer.contains(turnierTeilnehmer)) {
 
             this.teilnehmer.add(turnierTeilnehmer);
+        }
+    }
+
+    /**
+     * Entfernt den übergebenen Teilnehmer aus dem Turnier zusammen mit allen Spielen, an denen der Spieler teilgenommen hat
+     * @param turnierTeilnehmer Der Spieler, der aus dem Turnier entfernt werden soll.
+     */
+    public void entferneTeilnehmer(SteinScherePapierSpieler turnierTeilnehmer) {
+
+        if (this.teilnehmer.contains(turnierTeilnehmer)) {
+
+            this.teilnehmer.remove(turnierTeilnehmer);
+
+            Iterator<Spiel> spieleIterator = this.spiele.iterator();
+            HashSet<Spiel> neuesSpieleSet = new HashSet<>();
+
+            while (spieleIterator.hasNext()) {
+
+                Spiel aktuellesSpiel = spieleIterator.next();
+
+                if (!aktuellesSpiel.istTeilnehmer(turnierTeilnehmer)) {
+
+                    neuesSpieleSet.add(aktuellesSpiel);
+                }
+            }
+
+            this.spiele = neuesSpieleSet;
         }
     }
 
