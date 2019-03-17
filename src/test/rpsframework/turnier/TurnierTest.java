@@ -50,6 +50,12 @@ class TurnierTest {
     void testeAnzahlSpiele() {
 
         assertEquals(15, this.turnier.gibAnzahlSpiele());
+
+        this.turnier.fuegeTeilnehmerHinzu(new SpielerMock(7, Symbol.PAPIER));
+
+        this.turnier.starteTurnier();
+
+        assertEquals(21, this.turnier.gibAnzahlSpiele());
     }
 
     @Test

@@ -18,7 +18,7 @@ public class Spiel {
     /* Die Duelle in diesem Spiel. */
     private ArrayList<Duell> duelle;
 
-    /* Die Punkte der beiden Spieler */
+    /* Speichert die Punkte der beiden Spieler und die Anzahl der Unentschieden */
     private HashMap<SteinScherePapierSpieler, Integer> punkte;
 
 
@@ -119,6 +119,11 @@ public class Spiel {
         return this.duelle.get(runde - 1).gibSpielerSymbol(spieler);
     }
 
+    /**
+     * Prüft, ob der angegebene Spieler Teilnehmer dieses Spiels ist.
+     * @param spieler Der zu prüfende Spieler
+     * @return Wahr, wenn der Spieler Teilnehmer dieses Spiels ist, sonst falsch.
+     */
     public boolean istTeilnehmer(SteinScherePapierSpieler spieler) {
 
         return this.spieler1.equals(spieler) || this.spieler2.equals(spieler);
@@ -127,12 +132,22 @@ public class Spiel {
     @Override
     public boolean equals(Object object) {
 
-        return object != null && this.getClass() == object.getClass() && this.punkte.equals(((Spiel) object).punkte);
+        boolean istGleich = false;
+
+        if (object != null && this.getClass() == object.getClass() && this.hashCode() == object.hashCode()) {
+
+            Spiel anderesSpiel = (Spiel) object;
+
+            // Beide Spiele sind gleich, wenn die Spieler identisch sind.
+            istGleich = anderesSpiel.istTeilnehmer(this.spieler1) && anderesSpiel.istTeilnehmer(this.spieler2);
+        }
+
+        return istGleich;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(spieler1, spieler2, runden);
+        return Objects.hash(spieler1, spieler2);
     }
 }

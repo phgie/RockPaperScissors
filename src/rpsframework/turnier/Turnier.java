@@ -78,13 +78,17 @@ public class Turnier {
         //Für jeden Teilnehmer ...
         for (int i = 0; i < teilnehmer.size(); i++) {
 
-            //Für alle verbleibenden Teilnehmer...
+            //Für alle weiteren verbleibenden Teilnehmer...
             for (int j = i + 1; j < teilnehmer.size(); j++) {
 
                 Spiel spiel = new Spiel(teilnehmer.get(i), teilnehmer.get(j), this.rundenProSpiel);
 
-                spiel.starteSpiel();
-                spiele.add(spiel);
+                // Gibt es bereits ein Spiel zwischen beiden Teilnehmern?
+                if (!this.spiele.contains(spiel)) {
+
+                    spiele.add(spiel);
+                    spiel.starteSpiel();
+                }
             }
         }
     }
@@ -150,7 +154,7 @@ public class Turnier {
 
 
     //TODO
-    public SteinScherePapierSpieler starteAuswertung() {
+    public String gibAuswertung() {
 
 //        HashMap<SteinScherePapierSpieler, Integer> ergebnisse = new HashMap<>();
 //

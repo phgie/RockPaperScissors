@@ -58,6 +58,7 @@ public abstract class SteinScherePapierSpieler {
      * @param obj Das zu vergleichende Objekt
      * @return Wahr, wenn beide Objekte gleich sind, sonst falsch.
      */
+    @Override
     public final boolean equals(Object obj) {
 
         // Test auf Null, Klassengleichheit und Hashcode sind Standard, falls auch der Name übereinstimmt, sind beide gleich.
@@ -69,6 +70,7 @@ public abstract class SteinScherePapierSpieler {
      * Gibt den Hashcode dieses Objekts zurück. Wird für den Test auf Gleichheit benötigt.
      * @return Der Hashcode dieses Objekts
      */
+    @Override
     public final int hashCode() {
 
         // Wir berechnen den Hashcode auf dem Namen des Spielers.
