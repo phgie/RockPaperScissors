@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
 import rpsframework.turnier.Turnier;
+import test.rpsframework.mocks.SpielerMock;
 
 import java.util.ArrayList;
 

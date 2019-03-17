@@ -1,4 +1,4 @@
-package test.rpsframework.turnier;
+package test.rpsframework.mocks;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;

@@ -3,10 +3,10 @@ package test.rpsframework.basis;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import rpsframework.basis.Duell;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;
-import rpsframework.basis.Duell;
-import test.rpsframework.turnier.SpielerMock;
+import test.rpsframework.mocks.SpielerMock;
 
 class DuellTest {
 
@@ -18,15 +18,16 @@ class DuellTest {
     void setUp() {
 
         this.duell = new Duell();
-        this.spieler1 = new SpielerMock(1, Symbol.SCHERE);
-        this.spieler2 = new SpielerMock(2, Symbol.PAPIER);
     }
 
     @Test
     void papierBesiegtStein() {
 
-        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
-        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.PAPIER);
+        this.spieler1 = new SpielerMock(1, Symbol.STEIN);
+        this.spieler2 = new SpielerMock(2, Symbol.PAPIER);
+
+        duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
+        duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
         Assertions.assertEquals(duell.gibGewinner(), spieler2);
         Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
@@ -36,8 +37,11 @@ class DuellTest {
     @Test
     void steinBesiegtSchere() {
 
-        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
-        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.SCHERE);
+        this.spieler1 = new SpielerMock(1, Symbol.STEIN);
+        this.spieler2 = new SpielerMock(2, Symbol.SCHERE);
+
+        duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
+        duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
         Assertions.assertEquals(duell.gibGewinner(), spieler1);
         Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
@@ -47,8 +51,11 @@ class DuellTest {
     @Test
     void schereBesiegtPapier() {
 
-        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.PAPIER);
-        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.SCHERE);
+        this.spieler1 = new SpielerMock(1, Symbol.PAPIER);
+        this.spieler2 = new SpielerMock(2, Symbol.SCHERE);
+
+        duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
+        duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
         Assertions.assertEquals(duell.gibGewinner(), spieler2);
         Assertions.assertNotEquals(duell.gibGewinner(), spieler1);
@@ -58,8 +65,11 @@ class DuellTest {
     @Test
     void testAufUnentschieden() {
 
-        duell.fuegeSpielerSymbolHinzu(spieler1, Symbol.STEIN);
-        duell.fuegeSpielerSymbolHinzu(spieler2, Symbol.STEIN);
+        this.spieler1 = new SpielerMock(1, Symbol.STEIN);
+        this.spieler2 = new SpielerMock(2, Symbol.STEIN);
+
+        duell.fuegeSpielerSymbolHinzu(spieler1, spieler1.gibSymbol());
+        duell.fuegeSpielerSymbolHinzu(spieler2, spieler2.gibSymbol());
 
         Assertions.assertNull(duell.gibGewinner());
         Assertions.assertNotEquals(duell.gibGewinner(), spieler2);
