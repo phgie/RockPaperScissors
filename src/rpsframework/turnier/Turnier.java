@@ -7,6 +7,7 @@ import rpsframework.basis.Symbol;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Ein Turnier, bestehend aus mehreren Spielen mit jeweils mehreren Duellen
@@ -17,7 +18,7 @@ public class Turnier {
     private static final int standardRundenZahl = 100;
 
     /* Wir speichern hier die Teilnehmer des Turniers */
-    private ArrayList<SteinScherePapierSpieler> teilnehmer;
+    private List<SteinScherePapierSpieler> teilnehmer;
 
     /* Wir speichern die Spiele des Turniers in einem HashSet */
     private HashSet<Spiel> spiele;
@@ -75,24 +76,6 @@ public class Turnier {
     }
 
     /**
-     * Gibt die Anzahl der Teilnehmer dieses Turniers zurück.
-     * @return Die Anzahl der Teilnehmer
-     */
-    public int gibAnzahlSpieler() {
-
-        return this.teilnehmer.size();
-    }
-
-    /**
-     * Gibt die Anzahl der gespielten Spiele zurück.
-     * @return Die Anzahl der Spiele, die bisher gespielt wurden.
-     */
-    public int gibAnzahlSpiele() {
-
-        return this.spiele.size();
-    }
-
-    /**
      * Setzt die Anzahl der Runden pro Spiel für das Turnier fest.
      * @param runden Die Rundenzahl
      */
@@ -100,7 +83,6 @@ public class Turnier {
 
         this.rundenProSpiel = runden;
     }
-
 
     /**
      * Startet das Turnier mit den vorhandenen Teilnehmern und der eingestellten Anzahl Runden pro Spiel.
@@ -125,6 +107,57 @@ public class Turnier {
                 }
             }
         }
+    }
+
+    public List<SteinScherePapierSpieler> gibTeilnehmer() {
+
+        return this.teilnehmer;
+    }
+
+    /**
+     * Gibt die Anzahl der Teilnehmer dieses Turniers zurück.
+     * @return Die Anzahl der Teilnehmer
+     */
+    public int gibAnzahlSpieler() {
+
+        return this.teilnehmer.size();
+    }
+
+    /**
+     * Gibt die Anzahl der gespielten Spiele zurück.
+     * @return Die Anzahl der Spiele, die bisher gespielt wurden.
+     */
+    public int gibAnzahlSpiele() {
+
+        return this.spiele.size();
+    }
+
+    /**
+     * Gibt das Spiel zwischen den beiden übergebenen Teilnehmern zurück, falls es bereits eine Begegnung zwischen
+     * diesen beiden Spielern gibt, sonst null.
+     * @param spieler1 Der erste an dem zu suchenden Spiel beteiligte Spieler
+     * @param spieler2 Der zweite an dem zu suchenden Spiel beteiligte Spieler
+     * @return Das Spiel zwischen den beiden übergeben Spieler oder null, falls kein solches Spiel existiert
+     */
+    public Spiel gibSpiel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2) {
+
+        Spiel gefundenesSpiel = null;
+
+        if (this.teilnehmer.contains(spieler1) && this.teilnehmer.contains(spieler2)) {
+
+            //Beide Teilnehmer sind im Turnier, wir suchen nun nach dem Spiel zwischen beiden
+            for (Spiel aktuellesSpiel : this.spiele) {
+
+                if (aktuellesSpiel.istTeilnehmer(spieler1) && aktuellesSpiel.istTeilnehmer(spieler2)) {
+
+                    // Spiel gefunden, speichern und zurückgeben
+                    gefundenesSpiel = aktuellesSpiel;
+                    break;
+                }
+            }
+        }
+
+        return gefundenesSpiel;
     }
 
     /**
@@ -186,43 +219,5 @@ public class Turnier {
         }
 
         return anzahlSymbol;
-    }
-
-
-
-    //TODO
-    public String gibAuswertung() {
-
-//        HashMap<SteinScherePapierSpieler, Integer> ergebnisse = new HashMap<>();
-//
-//
-//        int[] punkte = new int[teilnehmer.size()];
-//        int maximalePunktzahl = 0;
-//        SteinScherePapierSpieler aktuellerGewinner = null;
-//
-//        for (int i = 0; i < spiele.length; ++i) {
-//            for (int j = i + 1; j < spiele.length; ++j) {
-//                Integer indexDesGewinners;
-//                SteinScherePapierSpieler gewinner = spiele[i][j].gibGewinner();
-//                if (gewinner == teilnehmer.get(i))
-//                    indexDesGewinners = i;
-//                else if (gewinner == teilnehmer.get(j))
-//                    indexDesGewinners = j;
-//                else
-//                    indexDesGewinners = null;
-//
-//                if (indexDesGewinners != null) {
-//                    punkte[indexDesGewinners] += 1;
-//
-//                    if (maximalePunktzahl < punkte[indexDesGewinners]) {
-//                        maximalePunktzahl = punkte[indexDesGewinners];
-//                        aktuellerGewinner = teilnehmer.get(indexDesGewinners);
-//                    } else if (maximalePunktzahl == punkte[indexDesGewinners])
-//                        aktuellerGewinner = null;
-//                }
-//            }
-//        }
-
-        return null;
     }
 }

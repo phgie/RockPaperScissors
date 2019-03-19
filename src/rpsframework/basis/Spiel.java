@@ -154,6 +154,24 @@ public class Spiel {
     }
 
     /**
+     * Gibt die Anzahl der bereits in diesem Spiel gespielten Runden zurück.
+     * @return Die Anzahl Runden, die bereits gespielt wurden
+     */
+    public int gibGespielteRunden() {
+
+        return this.duelle.size();
+    }
+
+    /**
+     * Gibt die Gesamtzahl an Runden für dieses Spiel zurück.
+     * @return Die gesamte Rundenzahl, die für dieses Spiel gespielt werden soll.
+     */
+    public int gibAnzahlRunden() {
+
+        return this.runden;
+    }
+
+    /**
      * Prüft, ob der angegebene Spieler Teilnehmer dieses Spiels ist.
      * @param spieler Der zu prüfende Spieler
      * @return Wahr, wenn der Spieler Teilnehmer dieses Spiels ist, sonst falsch.
