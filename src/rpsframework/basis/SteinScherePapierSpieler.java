@@ -9,11 +9,11 @@ package rpsframework.basis;
  */
 public abstract class SteinScherePapierSpieler {
 
-    private final String name;
+    private final int spielernummer;
 
     protected SteinScherePapierSpieler(int spielernummer) {
 
-        this.name = "Spieler " + spielernummer + " (" + this.getClass().getSimpleName() + ")";
+        this.spielernummer = spielernummer;
     }
 
     /**
@@ -48,7 +48,16 @@ public abstract class SteinScherePapierSpieler {
      */
     public final String getName() {
 
-        return this.name;
+        return "Spieler " + spielernummer + " (" + this.getClass().getSimpleName() + ")";
+    }
+
+    /**
+     * Gibt die Spielernummer des Spielers zurück
+     * @return Die Spielernummer
+     */
+    public final int getSpielernummer() {
+
+        return this.spielernummer;
     }
 
     /**

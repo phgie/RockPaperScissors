@@ -11,9 +11,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class TurnierExporter {
-    private String defaultHtmlToFormat = "<html>" +
+
+    private static final String DEFAULT_HTML_TO_FORMAT = "<html>" +
             "<head><link rel=\"stylesheet\" href=\"style.css\"/></head>" +
-            "<body><div id=\"content\">%s</div></body>" +
+            "<body><h1 align=\"center\">Stein, Schere, Papier Turnier</h1><br>%s</body>" +
             "</html>";
 
     public void schreibeHtmlMitAuswerung(Turnier turnier) {
@@ -44,7 +45,6 @@ public class TurnierExporter {
         Spiel begegnung = turnier.gibSpiel(spieler1, spieler2);
 
         StringBuilder builder = new StringBuilder();
-        builder.append("<a href=\"/RockPaperScissors/static/Turnier.html\">Zurueck zur Uebersicht</a>");
 
         builder.append("<table>");
         builder.append("<tr>")
@@ -66,7 +66,7 @@ public class TurnierExporter {
                 className = "lose-round";
 
             builder.append("<tr>");
-            builder.append("<td>").append(i + 1).append("</td>");
+            builder.append("<td>").append(i).append("</td>");
             builder.append(String.format("<td class=\"%s\">", className))
                     .append(String.format("<img src=\"/RockPaperScissors/static/begegnung/%s.svg\"/>", spieler1Symbol))
                     .append("</td>");
@@ -77,13 +77,13 @@ public class TurnierExporter {
         }
 
         builder.append("</table>");
-        return String.format(defaultHtmlToFormat, builder.toString());
+        return String.format(DEFAULT_HTML_TO_FORMAT, builder.toString());
     }
 
     private String gibSpieleMatrix(Turnier turnier) {
         List<SteinScherePapierSpieler> teilnehmerListe = turnier.gibTeilnehmer();
         StringBuilder builder = new StringBuilder();
-
+        builder.append("<div id=\"content\">");
         builder.append("<table>");
 
         builder.append("<tr>").append("<td/>");
@@ -97,7 +97,7 @@ public class TurnierExporter {
             builder.append("<td>").append(teilnehmer.getName()).append("</td>");
             for (int gegnerIndex = 0; gegnerIndex < teilnehmerListe.size(); ++gegnerIndex) {
                 SteinScherePapierSpieler gegner = teilnehmerListe.get(gegnerIndex);
-                if (spielerIndex == gegnerIndex)
+                if (spielerIndex <= gegnerIndex)
                     builder.append("<td class=\"no-match\"/>");
                 else {
                     Spiel begegnung = turnier.gibSpiel(teilnehmer, gegner);
@@ -106,17 +106,25 @@ public class TurnierExporter {
                     boolean teilnehmerHatGewonnen = punkteTeilnehmer > punkteGegner;
                     builder.append("<td class=\"").append(teilnehmerHatGewonnen ? "win-match" : "lose-match").append("\">")
                             .append(String.format("<a href=\"/RockPaperScissors/static/begegnung/%d_vs_%d.html\">", spielerIndex, gegnerIndex))
+                            .append("(S")
+                            .append(teilnehmer.getSpielernummer())
+                            .append(") ")
                             .append(punkteTeilnehmer)
                             .append(":")
                             .append(punkteGegner)
+                            .append(" (S")
+                            .append(gegner.getSpielernummer())
+                            .append(")")
                             .append("</a>")
                             .append("</td>");
                 }
             }
             builder.append("</tr>");
         }
+        builder.append("</table>");
+        builder.append("</div>");
 
-        return builder.append("</table>").toString();
+        return builder.toString();
     }
 
     public String gibTurnierAuswertung(Turnier turnier) {
@@ -139,11 +147,12 @@ public class TurnierExporter {
         int steinFuerSpielerInSpiel = begegnung.zaehleSymbolFuerSpieler(teilnehmer.get(0), Symbol.STEIN);
         int punkteBegegnung = begegnung.gibSpielerPunkte(teilnehmer.get(0));
 
-        return String.format(defaultHtmlToFormat, gibSpieleMatrix(turnier) + gibSpielerPunkte(turnier));
+        return String.format(DEFAULT_HTML_TO_FORMAT, gibSpieleMatrix(turnier) + gibSpielerPunkte(turnier));
     }
 
     private String gibSpielerPunkte(Turnier turnier) {
         StringBuilder builder = new StringBuilder();
+        builder.append("<div id=\"content\">");
         builder.append("<table>");
         builder.append("<tr>")
                 .append("<td>").append("Spielername").append("</td>")
@@ -168,6 +177,7 @@ public class TurnierExporter {
         }
 
         builder.append("</table>");
+        builder.append("</div>");
         return builder.toString();
     }
 }
