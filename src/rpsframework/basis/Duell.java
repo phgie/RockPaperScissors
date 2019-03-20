@@ -64,6 +64,7 @@ public class Duell {
             SteinScherePapierSpieler spieler1 = spielerIter.next();
             SteinScherePapierSpieler spieler2 = spielerIter.next();
 
+            // Wir fragen die Symbolklasse, ob das erste gegen das zweite Symbol gewinnt
             if (Symbol.symbolEinsSchlaegtSymbolZwei(this.symbole.get(spieler1), this.symbole.get(spieler2))) {
 
                 // Spieler 1 gewinnt
