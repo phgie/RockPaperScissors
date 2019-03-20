@@ -4,6 +4,7 @@ import rpsframework.beispiele.SpielerStein;
 import rpsframework.beispiele.SpielerZufall;
 import rpsframework.beispiele.SpielerZyklus;
 import rpsframework.turnier.Turnier;
+import rpsframework.turnier.TurnierExporter;
 
 public class Main {
 
@@ -33,5 +34,11 @@ public class Main {
         System.out.println("Punkte für " + spieler4.getName() + " : " + turnier.zaehleSpielerPunkte(spieler4));
         System.out.println("Punkte für " + spieler5.getName() + " : " + turnier.zaehleSpielerPunkte(spieler5));
         System.out.println("Punkte für " + "Unentschieden" + " : " + turnier.zaehleSpielerPunkte(null));
+
+        turnierZuHtml(turnier);
+    }
+
+    private static void turnierZuHtml(Turnier turnier) {
+        new TurnierExporter().schreibeHtmlMitAuswerung(turnier);
     }
 }
