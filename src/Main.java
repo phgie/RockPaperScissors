@@ -45,7 +45,7 @@ public class Main {
         System.out.println("Punkte für " + spieler5.getName() + " : " + turnier.zaehleSpielerPunkte(spieler5));
         System.out.println("Punkte für " + "Unentschieden" + " : " + turnier.zaehleSpielerPunkte(null));
 
-        //turnierZuHtml(turnier);
+        turnierZuHtml(turnier);
     }
 
     private static void turnierZuHtml(Turnier turnier) {
