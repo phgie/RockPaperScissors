@@ -1,4 +1,4 @@
-package aufgaben.aufgabe2;
+package aufgaben;
 
 public class Aufgabe2 {
 
