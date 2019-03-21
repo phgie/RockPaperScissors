@@ -20,6 +20,18 @@ table {
     margin-bottom: 120px;
 }
 
+table tr:first-child td:first-child {
+    background: white;
+}
+
+.result-matrix tr:first-child {
+    background: salmon;
+}
+
+.result-matrix tr td:first-child {
+    background: limegreen;
+}
+
 table tr:first-child,
 tr td:first-child {
     font-weight: bold;

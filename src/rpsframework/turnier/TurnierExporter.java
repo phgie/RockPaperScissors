@@ -25,12 +25,14 @@ public class TurnierExporter {
             writer.close();
 
             // anschließend schreibe für jedes Spiel eine eigene Auswertung
+            List<SteinScherePapierSpieler> teilnehmerListe = turnier.gibTeilnehmer();
             for (int i = 0; i < turnier.gibAnzahlSpieler(); ++i) {
                 for (int j = 0; j < turnier.gibAnzahlSpieler(); ++j) {
                     if (i != j) {
-                        writer = new BufferedWriter(new FileWriter("static/begegnung/" + i + "_vs_" + j + ".html"));
-                        List<SteinScherePapierSpieler> teilnehmerListe = turnier.gibTeilnehmer();
-                        writer.write(gibSpielAuswertung(turnier, teilnehmerListe.get(i), teilnehmerListe.get(j)));
+                        SteinScherePapierSpieler spieler1 = teilnehmerListe.get(i);
+                        SteinScherePapierSpieler spieler2 = teilnehmerListe.get(j);
+                        writer = new BufferedWriter(new FileWriter("static/begegnung/" + gibBegegnungstitel(spieler1, spieler2) + ".html"));
+                        writer.write(gibSpielAuswertung(turnier, spieler1, spieler2));
                         writer.close();
                     }
                 }
@@ -38,6 +40,12 @@ public class TurnierExporter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String gibBegegnungstitel(SteinScherePapierSpieler spieler1, SteinScherePapierSpieler spieler2) {
+        return spieler1.getClass().getSimpleName() + spieler1.getSpielernummer()
+                + "_vs_" +
+                spieler2.getClass().getSimpleName() + spieler2.getSpielernummer();
     }
 
 
@@ -84,7 +92,7 @@ public class TurnierExporter {
         List<SteinScherePapierSpieler> teilnehmerListe = turnier.gibTeilnehmer();
         StringBuilder builder = new StringBuilder();
         builder.append("<div id=\"content\">");
-        builder.append("<table>");
+        builder.append("<table class=\"").append("result-matrix").append("\">");
 
         builder.append("<tr>").append("<td/>");
         for (SteinScherePapierSpieler spieler : teilnehmerListe)
@@ -105,7 +113,7 @@ public class TurnierExporter {
                     int punkteGegner = begegnung.gibSpielerPunkte(gegner);
                     boolean teilnehmerHatGewonnen = punkteTeilnehmer > punkteGegner;
                     builder.append("<td class=\"").append(teilnehmerHatGewonnen ? "win-match" : "lose-match").append("\">")
-                            .append(String.format("<a href=\"/RockPaperScissors/static/begegnung/%d_vs_%d.html\">", spielerIndex, gegnerIndex))
+                            .append(String.format("<a href=\"/RockPaperScissors/static/begegnung/%s.html\">", gibBegegnungstitel(teilnehmer, gegner)))
                             .append("(S")
                             .append(teilnehmer.getSpielernummer())
                             .append(") ")
@@ -153,7 +161,7 @@ public class TurnierExporter {
     private String gibSpielerPunkte(Turnier turnier) {
         StringBuilder builder = new StringBuilder();
         builder.append("<div id=\"content\">");
-        builder.append("<table>");
+        builder.append("<table class=\"").append("points-by-player").append("\">");
         builder.append("<tr>")
                 .append("<td>").append("Spielername").append("</td>")
                 .append("<td>").append("Gesamtpunktzahl").append("</td>")

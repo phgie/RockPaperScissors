@@ -3,7 +3,7 @@
 
 # output directory
 out/
-static/begegnung/*.html
+static/*.html
 
 # Log file
 *.log
