@@ -47,7 +47,7 @@ public class Aufgabe1 {
         System.out.println(string1 + string2);
         System.out.println(string3);
 
-        System.out.println((string1 + string2) == string3);
-        System.out.println((string1 + string2).equals(string3));
+        System.out.println((string1 + string2) == string3); // behauptet, dass die Strings nicht gleich sind (sind sie aber)
+        System.out.println((string1 + string2).equals(string3)); // korrekte Ausgabe
     }
 }
