@@ -1,5 +1,5 @@
+import impl.Spieler;
 import rpsframework.basis.SteinScherePapierSpieler;
-import rpsframework.beispiele.SpielerZufall;
 import rpsframework.turnier.Turnier;
 import rpsframework.turnier.TurnierExporter;
 
@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
 
         // Spieler erstellen
-        SteinScherePapierSpieler spieler1 = new SpielerZufall(1);
-        SteinScherePapierSpieler spieler2 = new SpielerZufall(2);
-        SteinScherePapierSpieler spieler3 = new SpielerZufall(3);
+        SteinScherePapierSpieler spieler1 = new Spieler(1);
+        SteinScherePapierSpieler spieler2 = new Spieler(2);
+        SteinScherePapierSpieler spieler3 = new Spieler(3);
 
 
         Turnier turnier = new Turnier();
