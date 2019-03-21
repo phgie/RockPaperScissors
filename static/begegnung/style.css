@@ -1,32 +1,35 @@
-.win-match {
+.lose-round + td,
+.win-round {
     background: lightgreen;
 }
 
-.lose-match {
+.win-round + td,
+.lose-round {
     background: pink;
 }
 
-.no-match {
+.draw + td,
+.draw {
     background: lightgrey;
 }
 
 td {
     text-align: center;
-    line-height: 24px;
 }
 
-table {
-    width: 100%;
-    margin-bottom: 120px;
+td > img {
+    width: 80px;
 }
+
 
 table tr:first-child,
 tr td:first-child {
     font-weight: bold;
 }
 
+table,
 #content {
     margin-left: auto;
     margin-right: auto;
-    max-width: 1280px;
+    max-width: 360px;
 }
