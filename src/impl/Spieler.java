@@ -19,6 +19,6 @@ public class Spieler extends SteinScherePapierSpieler {
     @Override
     public Symbol gibSymbol() {
 
-        return Symbol.STEIN;
+        return null;
     }
 }
