@@ -5,6 +5,9 @@ public class Aufgabe3 {
     public static void main(String[] args) {
 
         /* Aufgabe 3 */
+
+        // Aufgabe: Nimm wieder deine Schleife, die Zahlen von 1 bis 10 ausgibt. Erweitere die Schleife so, dass alle
+        // ungeraden Zahlen doppelt ausgegeben werden. Tipp: Eventuell ist der %-Operator hilfreich. ;-)
         for (int i = 1; i <= 10; i++) {
 
             System.out.println(i);
@@ -14,6 +17,9 @@ public class Aufgabe3 {
             }
         }
 
+        //------------------------------
+        // Aufgabe: Lass jetzt nur alle geraden Zahlen ausgeben, die ungeraden Zahlen wollen wir nicht sehen. Nutze dafür if und else.
+
         for (int i = 1; i <= 10; i++) {
 
             if (i % 2 == 0) {
@@ -21,6 +27,10 @@ public class Aufgabe3 {
                 System.out.println(i);
             }
         }
+
+        //------------------------------
+        // Aufgabe: Speichere deinen Namen in einer Variablen und lass diese in einer Schleife buchstabenweise ausgeben
+        // (siehe Aufgabe 2). Gib aber keine Vokale (a, e, i, o, u) aus.
 
         String name = "Philipp";
         for (int i = 0; i < name.length(); i++) {

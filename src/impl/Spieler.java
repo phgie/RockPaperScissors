@@ -11,14 +11,15 @@ import rpsframework.basis.Symbol;
  */
 public class Spieler extends SteinScherePapierSpieler {
 
+    /**
+     * Erzeugt ein neues Objekt dieser Klasse.
+     * @param spielernummer Die Spielernummer des Spielers in einem Spiel bzw. Turnier. Die Spielernummer muss für jeden
+     *                      Spieler verschieden sein.
+     */
     public Spieler(int spielernummer) {
 
         super(spielernummer);
     }
 
-    @Override
-    public Symbol gibSymbol() {
-
-        return null;
-    }
+    // Füge hier drunter die fehlende Methode ein
 }
