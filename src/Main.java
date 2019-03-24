@@ -1,6 +1,7 @@
 import impl.Spieler;
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.turnier.Turnier;
+import rpsframework.turnier.TurnierExporter;
 
 public class Main {
 
@@ -14,5 +15,8 @@ public class Main {
         turnier.fuegeTeilnehmerHinzu(spieler2);
 
         turnier.starteTurnier();
+
+        TurnierExporter exporter = new TurnierExporter();
+        exporter.schreibeHtmlMitAuswerung(turnier);
     }
 }
