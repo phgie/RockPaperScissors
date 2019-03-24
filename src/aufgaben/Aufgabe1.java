@@ -5,6 +5,9 @@ public class Aufgabe1 {
     public static void main(String[] args) {
 
         /* Aufgabe 1 */
+        System.out.println("------------------------");
+        System.out.println("Aufgabe 1");
+        System.out.println("------------------------");
 
         // Aufgabe: Gib "Hallo Welt!" auf der Kommandozeile aus. Tipp: Nutze den Befehl System.out.println();
 

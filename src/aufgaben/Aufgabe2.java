@@ -5,6 +5,9 @@ public class Aufgabe2 {
     public static void main(String[] args) {
 
         /* Aufgabe 2 */
+        System.out.println("------------------------");
+        System.out.println("Aufgabe 2");
+        System.out.println("------------------------");
 
         //------------------------------
         // Aufgabe: Gib die Zahlen von 1 bis 10 zeilenweise aus. Benutze dafür eine Schleife.
