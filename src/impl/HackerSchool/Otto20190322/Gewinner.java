@@ -1,4 +1,4 @@
-package impl;
+package impl.HackerSchool.Otto20190322;
 
 import rpsframework.basis.SteinScherePapierSpieler;
 import rpsframework.basis.Symbol;

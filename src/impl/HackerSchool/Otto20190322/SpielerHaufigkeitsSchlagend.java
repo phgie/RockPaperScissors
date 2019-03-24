@@ -1,4 +1,4 @@
-package impl;
+package impl.HackerSchool.Otto20190322;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +15,11 @@ import rpsframework.basis.Symbol;
  * ... an einem Spiel gegen einen anderen Spieler teilnehmen
  * ....an einem Turnier teilnehmen und dabei gegen mehrere Spieler ein Spiel bestreiten
  */
-public class SpielerMusterErkenner extends SteinScherePapierSpieler {
+public class SpielerHaufigkeitsSchlagend extends SteinScherePapierSpieler {
 	private List<Symbol> enemySymbols = new ArrayList<Symbol>();
 	private int round = 0;
 
-    public SpielerMusterErkenner(int spielernummer) {
+    public SpielerHaufigkeitsSchlagend(int spielernummer) {
         super(spielernummer);
         
         
@@ -27,15 +27,7 @@ public class SpielerMusterErkenner extends SteinScherePapierSpieler {
 
     @Override
     public Symbol gibSymbol() {
-    	Symbol returnSymbol = getSchlagenden(getWarscheinlichstenFolgenden());
-    	
-    	/*if(enemySymbols.size() > 0){
-    		Symbol lastPlayed = enemySymbols.get(enemySymbols.size() - 1);
-    		
-    		returnSymbol = getSchlagenden(lastPlayed);
-    	}*/
-    	
-    	
+    	Symbol returnSymbol = getSchlagenden(getHaufigstes());
     	
     	//System.out.println("Spieler" + getSpielernummer() + " - " + returnSymbol);
         return returnSymbol;
@@ -62,28 +54,7 @@ public class SpielerMusterErkenner extends SteinScherePapierSpieler {
     	return null;
     }
     
-    private Symbol getWarscheinlichstenFolgenden(){
-    	List<Symbol> sl = new ArrayList<Symbol>();
-    	Symbol returnSymbol = Symbol.STEIN;
-    	
-    	if(enemySymbols.size() > 2){
-    		Symbol lastSymbol = enemySymbols.get(enemySymbols.size() - 1);
-    		int index=0;
-    		
-    		for(Symbol s : enemySymbols){
-    			if(s.equals(lastSymbol) && index != enemySymbols.size() - 1){
-    				sl.add(enemySymbols.get(index + 1));
-    			}
-    			index++;
-    		}
-    		
-    		returnSymbol = getHaufigstes(sl);
-    	}
-    	
-    	return returnSymbol;
-    }
-    
-    private Symbol getHaufigstes(List<Symbol> list){
+    private Symbol getHaufigstes(){
     	Map<Symbol, Integer> symbolCount = new HashMap<Symbol, Integer>();
     	symbolCount.put(Symbol.STEIN, 0);
     	symbolCount.put(Symbol.SCHERE, 0);
@@ -93,7 +64,7 @@ public class SpielerMusterErkenner extends SteinScherePapierSpieler {
     	int highest=0;
     	Symbol returnSymbol = Symbol.STEIN;
     	
-    	for(Symbol s : list){
+    	for(Symbol s : enemySymbols){
     		symbolCount.replace(s, symbolCount.get(s).intValue() + 1);
     	}
     	

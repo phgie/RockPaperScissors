@@ -1,4 +1,4 @@
-package impl;
+package impl.HackerSchool.Otto20190322;
 
 import java.util.ArrayList;
 import java.util.List;

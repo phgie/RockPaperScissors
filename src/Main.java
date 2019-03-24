@@ -1,18 +1,18 @@
 import impl.Spieler;
-import rpsframework.basis.Symbol;
+import rpsframework.basis.SteinScherePapierSpieler;
+import rpsframework.turnier.Turnier;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // Spieler 1 erstellen
-        Spieler spieler1 = new Spieler(1);
-        Symbol symbol = spieler1.gibSymbol();
+        SteinScherePapierSpieler spieler1 = new Spieler(1);
+        SteinScherePapierSpieler spieler2 = new Spieler(2);
 
-        System.out.println("Spieler 1 spielt: " + symbol);
+        Turnier turnier = new Turnier();
+        turnier.fuegeTeilnehmerHinzu(spieler1);
+        turnier.fuegeTeilnehmerHinzu(spieler2);
 
-        // Erstelle hier drunter einen weiteren Spieler
-
-
+        turnier.starteTurnier();
     }
 }
