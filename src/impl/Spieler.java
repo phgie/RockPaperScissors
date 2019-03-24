@@ -23,7 +23,7 @@ public class Spieler extends SteinScherePapierSpieler {
 
     /**
      * TODO: Unfertige Beispielimplementierung
-     * @return
+     * @return Ein Symbol
      */
     @Override
     public Symbol gibSymbol() {
